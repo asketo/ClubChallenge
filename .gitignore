@@ -40,3 +40,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Files with sensible data
+/src/app/shared/data-storage.service.ts

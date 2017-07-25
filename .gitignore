@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Files with sensible data
-/src/app/shared/data-storage.service.ts
+/hidden/

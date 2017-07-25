@@ -1,3 +1,26 @@
-<p>
-  signup works!
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form action="">
+      <div class="form-group">
+        <label for="firstName">Vorname</label>
+        <input type="text" class="form-control" id="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nachname</label>
+        <input type="text" class="form-control" id="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" aria-describedby="emailHelp" required>
+      </div>
+      <div class="form-group">
+        <label for="gender">Geschlecht</label>
+        <select name="gender" id="gender" class="form-control">
+          <option value="">Männlich</option>
+          <option value="">Weiblich</option>
+        </select>
+      </div>
+      <button class="btn btn-primary">Senden</button>
+    </form>
+  </div>
+</div>

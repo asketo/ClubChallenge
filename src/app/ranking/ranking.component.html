@@ -1,15 +1,14 @@
-<h4>TODO: Write pipe to order list</h4>
-<div class="container pt-3">  
+  <div class="container">  
   <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-      <div class="list-group">        
+      <div class="list-group">
         <a class="list-group-item list-group-item-action"
-        *ngFor="let player of playersList; let i = index"
-        [routerLink]="['/players', i]">
+        *ngFor="let player of (playersList | sortPlayers); let i = index"
+        [routerLink]="['/players', i, 'detail']">
       {{ player.firstName }} {{ player.lastName }}</a>
       </div>
     </div>
     <div class="col-sm-2"></div>
   </div>
-</div>
+</div>  

@@ -10,8 +10,6 @@ export class PlayersService {
 
     constructor() { }
 
-
-
     setPlayers(players: Player[]) {
         this.players = players;
         this.playersChanged.next(this.players.slice());
@@ -24,4 +22,9 @@ export class PlayersService {
     getPlayer(id: number) {
         return this.players[id];
     }
+
+    genderChanged() {
+        this.playersChanged.next(this.players.slice());
+    }
+
 }

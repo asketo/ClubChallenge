@@ -8,13 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './core/header/header.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { RankingComponent } from './ranking/ranking.component';
 import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
 import { DataStorageService } from './shared/data-storage.service';
 import { PlayersService } from './players/players.service';
 import { AdminComponent } from './admin/admin.component';
 import { UpdatesComponent } from './core/updates/updates.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { RankingDisplayService } from './ranking/ranking-display.service';
+import { ConnectionParametersService } from './hidden/connection-parameters.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,6 @@ import { FooterComponent } from './core/footer/footer.component';
     HeaderComponent,
     SigninComponent,
     SignupComponent,
-    RankingComponent,
     PagenotfoundComponent,
     AdminComponent,
     UpdatesComponent,
@@ -34,7 +34,7 @@ import { FooterComponent } from './core/footer/footer.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [DataStorageService, PlayersService],
+  providers: [DataStorageService, PlayersService, RankingDisplayService, ConnectionParametersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

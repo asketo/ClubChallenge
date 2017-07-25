@@ -12,7 +12,7 @@ import { DataStorageService } from '../../shared/data-storage.service';
 })
 export class PlayerDetailComponent implements OnInit {
   id: number;
-  player: Player = null;
+  player: Player = new Player('Max', 'Mustermann', 999);
 
   constructor(
     private pService: PlayersService,
@@ -20,7 +20,6 @@ export class PlayerDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.dss.getPlayers();
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];

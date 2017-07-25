@@ -3,14 +3,17 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { HomeComponent } from './core/home/home.component';
 import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
-import { RankingComponent } from './ranking/ranking.component';
 import { AdminComponent } from './admin/admin.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'players', loadChildren: './players/players.module#PlayersModule' },
-    { path: 'ranking', component: RankingComponent },
+    { path: 'ranking', loadChildren: './ranking/ranking.module#RankingModule' },
     { path: 'admin', component: AdminComponent },
+    { path: 'signin', component: SigninComponent },
+    { path: 'signup', component: SignupComponent },
     { path: '**', component: PagenotfoundComponent }
 ]
 

@@ -8,7 +8,7 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
 const playersRoutes = [
   {path: '', component: PlayersComponent, children: [
     {path: '', component: PlayerEditComponent, pathMatch: 'full'},
-    {path: ':id', component: PlayerDetailComponent},
+    {path: ':id/detail', component: PlayerDetailComponent},
     {path: ':id/edit', component: PlayerEditComponent}
   ]}
 ]

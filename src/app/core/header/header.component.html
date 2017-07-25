@@ -18,8 +18,8 @@
           <i class="fa fa-list fa-fw" aria-hidden="true"></i>Ranglisten
         </a>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="Preview">
-          <a class="dropdown-item" routerLink="ranking"><i class="fa fa-male fa-fw" aria-hidden="true"></i>Männer</a>
-          <a class="dropdown-item" routerLink=""><i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
+          <a class="dropdown-item" routerLink="ranking" (click)="setMale()"><i class="fa fa-male fa-fw" aria-hidden="true"></i>Männer</a>
+          <a class="dropdown-item" routerLink="ranking" (click)="setFemale()"><i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
         </div>
       </li>
       <li class="nav-item">
@@ -32,8 +32,8 @@
           <i class="fa fa-user fa-fw" aria-hidden="true"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="SignIn">
-          <a class="dropdown-item" routerLink=""><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Anmelden</a>
-          <a class="dropdown-item" routerLink=""><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Registrieren</a>
+          <a class="dropdown-item" routerLink="signin"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Anmelden</a>
+          <a class="dropdown-item" routerLink="signup"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Registrieren</a>
         </div>
       </li>
     </ul>

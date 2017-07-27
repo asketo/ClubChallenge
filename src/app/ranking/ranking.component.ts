@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute, Params } from '@angular/router';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-import { DataStorageService } from '../shared/data-storage.service';
 import { Player } from '../players/player.model';
 import { PlayersService } from '../players/players.service';
-import { RankingDisplayService } from './ranking-display.service';
 
 @Component({
   selector: 'app-ranking',
@@ -13,31 +11,23 @@ import { RankingDisplayService } from './ranking-display.service';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit {
-  playersList: Player[];
-  subscription = new Subscription;
+  players: FirebaseListObservable<any>;
+  gender = '';
 
-  constructor(
-    private dService: DataStorageService,
-    private pService: PlayersService,
-    private rankingService: RankingDisplayService) {
-  }
+  constructor(private db: AngularFireDatabase, private route: ActivatedRoute, private pService: PlayersService) {
+    }
 
   ngOnInit() {
-    if (this.rankingService.getGender() === 'male') {
-      this.dService.getPlayers(this.rankingService.getMaleUrl());
-      this.playersList = this.pService.getPlayers();
-      this.subscription = this.pService.playersChanged
-        .subscribe((players: Player[]) => {
-          this.playersList = players;
-        });
-    } else {
-      this.dService.getPlayers(this.rankingService.getFemaleUrl());
-      this.playersList = this.pService.getPlayers();
-      this.subscription = this.pService.playersChanged
-        .subscribe((players: Player[]) => {
-          this.playersList = players;
-        });
-    }
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.gender = params['gender'];
+        this.players = this.db.list(this.gender);
+      }
+    );
+  }
+
+  onDetail(player: Player) {
+    this.pService.setPlayer(player);
   }
 
 }

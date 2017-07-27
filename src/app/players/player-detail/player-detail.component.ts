@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+// import { ActivatedRoute, Params } from '@angular/router'
+// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Player } from '../player.model';
 import { PlayersService } from '../players.service';
-import { DataStorageService } from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-player-detail',
@@ -11,20 +11,12 @@ import { DataStorageService } from '../../shared/data-storage.service';
   styleUrls: ['./player-detail.component.css']
 })
 export class PlayerDetailComponent implements OnInit {
-  id: number;
-  player: Player = new Player('Max', 'Mustermann', 999);
+  player: Player;
 
   constructor(
-    private pService: PlayersService,
-    private dss: DataStorageService,
-    private route: ActivatedRoute) { }
+    private pService: PlayersService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.player = this.pService.getPlayer(this.id);
-      }
-    );
+    this.player = this.pService.getPresetPlayer();
   }
 }

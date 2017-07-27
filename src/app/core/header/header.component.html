@@ -18,8 +18,8 @@
           <i class="fa fa-list fa-fw" aria-hidden="true"></i>Ranglisten
         </a>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="Preview">
-          <a class="dropdown-item" routerLink="ranking" (click)="setMale()"><i class="fa fa-male fa-fw" aria-hidden="true"></i>Männer</a>
-          <a class="dropdown-item" routerLink="ranking" (click)="setFemale()"><i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
+          <a class="dropdown-item" [routerLink]="['ranking', 'men']"><i class="fa fa-male fa-fw" aria-hidden="true"></i>Männer</a>
+          <a class="dropdown-item" [routerLink]="['ranking', 'women']"><i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
         </div>
       </li>
       <li class="nav-item">

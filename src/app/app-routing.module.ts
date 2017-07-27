@@ -6,6 +6,7 @@ import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.componen
 import { AdminComponent } from './admin/admin.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { SignupSuccessComponent } from './auth/signup-success/signup-success.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     { path: 'admin', component: AdminComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'signup/signup-success', component: SignupSuccessComponent },
     { path: '**', component: PagenotfoundComponent }
 ]
 

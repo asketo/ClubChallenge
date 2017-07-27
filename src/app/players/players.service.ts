@@ -7,6 +7,7 @@ import { Player } from './player.model';
 export class PlayersService {
     playersChanged = new Subject<Player[]>();
     players: Player[] = [];
+    player: Player;
 
     constructor() { }
 
@@ -15,8 +16,16 @@ export class PlayersService {
         this.playersChanged.next(this.players.slice());
     }
 
+    setPlayer(player: Player) {
+        this.player = player;
+    }
+
     getPlayers() {
         return this.players.slice();
+    }
+
+    getPresetPlayer() {
+        return this.player;
     }
 
     getPlayer(id: number) {

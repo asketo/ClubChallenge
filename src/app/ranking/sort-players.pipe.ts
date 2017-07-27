@@ -8,16 +8,19 @@ import { Player } from '../players/player.model';
 export class SortPlayersPipe implements PipeTransform {
 
   transform(players: Player[]): Player[] {
-    players.sort((a: Player, b: Player) => {
-      if (a['rank'] < b['rank']) {
-        return -1;
-      } else if (a['rank'] > b['rank']) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    if (players === null) {
+      return null;
+    } else {
+      players.sort((a: Player, b: Player) => {
+        if (a['rank'] < b['rank']) {
+          return -1;
+        } else if (a['rank'] > b['rank']) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
     return players;
+    }
   }
-
 }

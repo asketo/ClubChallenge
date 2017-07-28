@@ -1,3 +1,53 @@
-<div>
-  Hallo Peter!
+<div class="container py-3">
+  <div class="row">
+    <div class="col cs-12 col-sm-12 col-md-8">
+      <h5 class="text-center">Admin-Bereich {{ gender }}</h5>
+      <hr>
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-xs-8 col-sm-12 col-md-8 text-center">
+      <button class="btn btn-primary btn-sm" (click)="onMale()" [disabled]="gender==='Männer'">Männer</button>
+      <button class="btn btn-primary btn-sm" (click)="onFemale()" [disabled]="gender==='Frauen'">Frauen</button>
+    </div>
+  </div> -->
+  <div class="text-center">
+    <label class="custom-control custom-radio">
+    <input type="radio" id="male" name="radio" class="custom-control-input" (click)="onMale()" checked="checked">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Männer</span>
+  </label>
+    <label class="custom-control custom-radio">
+    <input type="radio" id="female" name="radio" class="custom-control-input" (click)="onFemale()">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Frauen</span>
+  </label>
+  </div>
+
+
+  <div class="row py-3">
+    <div class="col-xs-12 col-sm-12 col-md-8">
+      <table class="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <!-- <th>Edit</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let player of players | async | sortPlayers" (click)="onEdit(player, player.$key)" style="cursor: pointer" class="table-row">
+            <th scope="row">{{ player.rank }}</th>
+            <td>{{ player.firstName }}</td>
+            <td>{{ player.lastName }}</td>
+            <!-- <td><button class="btn btn-primary btn-sm" type="button" (click)="onEdit(player)">Edit</button></td> -->
+            <!-- <td><i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(player)" style="cursor: pointer"></i></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>

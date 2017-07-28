@@ -5,6 +5,7 @@ import { PlayersComponent } from './players.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerEditComponent } from './player-edit/player-edit.component';
 import { PlayersRoutingModule } from './players-routing.module';
+import { SharedFeaturesModule } from '../shared/shared-features.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PlayersRoutingModule } from './players-routing.module';
   ],
   imports: [
     CommonModule,
-    PlayersRoutingModule
+    PlayersRoutingModule,
+    SharedFeaturesModule
   ]
 })
 export class PlayersModule {

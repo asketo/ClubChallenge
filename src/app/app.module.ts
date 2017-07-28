@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -19,6 +18,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UpdatesComponent } from './core/updates/updates.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { SignupSuccessComponent } from './auth/signup-success/signup-success.component';
+import { SharedFeaturesModule } from './shared/shared-features.module';
 
 @NgModule({
   declarations: [
@@ -37,10 +37,10 @@ import { SignupSuccessComponent } from './auth/signup-success/signup-success.com
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SharedFeaturesModule
   ],
   providers: [PlayersService],
   bootstrap: [AppComponent]

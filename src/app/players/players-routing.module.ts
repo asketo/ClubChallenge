@@ -9,7 +9,7 @@ const playersRoutes = [
   {path: '', component: PlayersComponent, children: [
     {path: '', component: PlayerEditComponent, pathMatch: 'full'},
     {path: 'detail', component: PlayerDetailComponent},
-    {path: ':id/edit', component: PlayerEditComponent}
+    {path: 'edit', component: PlayerEditComponent}
   ]}
 ]
 

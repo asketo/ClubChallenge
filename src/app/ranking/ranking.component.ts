@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 import { Player } from '../players/player.model';
 import { PlayersService } from '../players/players.service';
+import { SortPlayersPipe } from '../shared/sort-players.pipe';
 
 @Component({
   selector: 'app-ranking',

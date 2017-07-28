@@ -7,33 +7,27 @@ import { Player } from './player.model';
 export class PlayersService {
     playersChanged = new Subject<Player[]>();
     players: Player[] = [];
-    player: Player;
+    player: Player = null;
+    playerKey: string;
 
     constructor() { }
 
-    setPlayers(players: Player[]) {
-        this.players = players;
-        this.playersChanged.next(this.players.slice());
-    }
-
-    setPlayer(player: Player) {
+    setPlayer(player: Player, key: string) {
         this.player = player;
+        this.playerKey = key;
     }
 
     getPlayers() {
         return this.players.slice();
     }
 
-    getPresetPlayer() {
-        return this.player;
-    }
-
-    getPlayer(id: number) {
-        return this.players[id];
-    }
-
-    genderChanged() {
-        this.playersChanged.next(this.players.slice());
+    getPlayer() {
+        // Create dummy player to avoid error in console by refreshing PlayerEditComponent => redirects to AdminComponent
+        if ( this.player === null) {
+            return this.player = new Player('dummyPlayer', null, null, 'dummyGender', null);
+        } else {
+            return this.player;
+        }
     }
 
 }

@@ -12,14 +12,14 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class SignupComponent implements OnInit {
   form: FormGroup;
   players: FirebaseListObservable<any[]>;
+  gender = '';
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private db: AngularFireDatabase) {
-    this.createForm();
-    this.players = db.list('/men');
+      this.createForm();
   }
 
   createForm() {
@@ -36,16 +36,19 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     if (this.form.status === 'VALID') {
-      this.router.navigate(['signup-success'], {relativeTo: this.route})
+      if (this.form.value.gender === 'male') {
+        this.players = this.db.list('/men');
+        this.players.push(this.form.value);
+      } else if (this.form.value.gender === 'female') {
+        this.players = this.db.list('/women');
+        this.players.push(this.form.value);
+      }
+      this.router.navigate(['admin']);
     }
   }
 
   onReset() {
     this.form.reset();
-  }
-
-  onUpdate(key: string, firstName: string) {
-    this.players.update(key, { firstName: firstName })
   }
 
 }

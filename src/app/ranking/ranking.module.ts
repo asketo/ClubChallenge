@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { RankingComponent } from './ranking.component';
 import { RankingRoutingModule } from './ranking-routing.module';
-import { SortPlayersPipe } from './sort-players.pipe';
+import { SharedFeaturesModule } from '../shared/shared-features.module';
 
 @NgModule({
   declarations: [
-    RankingComponent,
-    SortPlayersPipe
+    RankingComponent
   ],
   imports: [
     CommonModule,
-    RankingRoutingModule
+    RankingRoutingModule,
+    SharedFeaturesModule
   ]
 })
 export class RankingModule {

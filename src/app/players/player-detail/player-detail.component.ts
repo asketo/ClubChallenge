@@ -13,10 +13,9 @@ import { PlayersService } from '../players.service';
 export class PlayerDetailComponent implements OnInit {
   player: Player;
 
-  constructor(
-    private pService: PlayersService) { }
+  constructor(private pService: PlayersService) { }
 
   ngOnInit() {
-    this.player = this.pService.getPresetPlayer();
+    this.player = this.pService.getPlayer();
   }
 }

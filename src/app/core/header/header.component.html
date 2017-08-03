@@ -11,30 +11,35 @@
   <div class="collapse navbar-collapse" id="nav-content">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink=""><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" routerLink=""><button class="btn btn-outline-danger">Home</button></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-list fa-fw" aria-hidden="true"></i>Ranglisten
+          <button class="btn btn-outline-danger">Ranglisten</button>
         </a>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="Preview">
           <a class="dropdown-item" [routerLink]="['ranking', 'men']"><i class="fa fa-male fa-fw" aria-hidden="true"></i>Männer</a>
           <a class="dropdown-item" [routerLink]="['ranking', 'women']"><i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink=""><i class="fa fa-book fa-fw" aria-hidden="true"></i>Regeln</a>
-      </li>
+       <li class="nav-item">
+        <a class="nav-link disabled" routerLink="/"><button class="btn btn-outline-danger">Statistiken</button></a>
+      </li> 
     </ul>
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="signin">
+          <button class="btn btn-outline-success" type="button">Anmelden</button>
+        </a>        
+      </li> 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="SignIn" role="button" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-user fa-fw" aria-hidden="true"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="SignIn">
-          <a class="dropdown-item" routerLink="signin"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Anmelden</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="SignIn">          
           <a class="dropdown-item" routerLink="signup"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Registrieren</a>
           <a class="dropdown-item" routerLink="admin"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Admin</a>
+          <a class="dropdown-item" routerLink="signin/edit"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Edit Player (temporary)</a>
         </div>
       </li>
     </ul>

@@ -7,6 +7,7 @@ import { AdminComponent } from './admin/admin.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SignupSuccessComponent } from './auth/signup-success/signup-success.component';
+import { EditPlayerComponent } from './auth/signin/edit-player/edit-player.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     { path: 'ranking', loadChildren: './ranking/ranking.module#RankingModule' },
     { path: 'admin', component: AdminComponent },
     { path: 'signin', component: SigninComponent },
+    { path: 'signin/edit', component: EditPlayerComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'signup/signup-success', component: SignupSuccessComponent },
     { path: '**', component: PagenotfoundComponent }

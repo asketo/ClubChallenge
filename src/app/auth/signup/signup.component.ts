@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-// TODO: Send data to database
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

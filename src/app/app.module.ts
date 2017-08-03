@@ -1,10 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/home/home.component';
@@ -19,6 +15,8 @@ import { UpdatesComponent } from './core/updates/updates.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { SignupSuccessComponent } from './auth/signup-success/signup-success.component';
 import { SharedFeaturesModule } from './shared/shared-features.module';
+import { ProfileComponent } from './auth/profile/profile.component';
+import { EditPlayerComponent } from './auth/signin/edit-player/edit-player.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +29,14 @@ import { SharedFeaturesModule } from './shared/shared-features.module';
     AdminComponent,
     UpdatesComponent,
     FooterComponent,
-    SignupSuccessComponent
+    SignupSuccessComponent,
+    ProfileComponent,
+    EditPlayerComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
     SharedFeaturesModule
   ],
   providers: [PlayersService],

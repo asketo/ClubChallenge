@@ -16,7 +16,7 @@ export class RankingComponent implements OnInit {
   gender = '';
 
   constructor(private db: AngularFireDatabase, private route: ActivatedRoute, private pService: PlayersService) {
-    }
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -27,8 +27,8 @@ export class RankingComponent implements OnInit {
     );
   }
 
-  onDetail(player: Player) {
-    this.pService.setPlayer(player);
-  }
+  // onDetail(player: Player) {
+  //   this.pService.setPlayer();
+  // }
 
 }

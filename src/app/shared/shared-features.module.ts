@@ -11,10 +11,10 @@ import { AuthService } from '../auth/auth.service';
 @NgModule({
   declarations: [SortPlayersPipe],
   imports: [
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   exports: [

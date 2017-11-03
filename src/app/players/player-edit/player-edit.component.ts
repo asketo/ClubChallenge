@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Player } from '../player.model';
-import { PlayersService } from '../players.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-player-edit',
@@ -17,49 +17,53 @@ export class PlayerEditComponent implements OnInit {
   editForm: FormGroup;
 
   constructor(
-    private pService: PlayersService,
+    private pService: PlayerService,
     private db: AngularFireDatabase,
     private router: Router,
     private fb: FormBuilder) {
     }
 
-  ngOnInit() {
-    // Extract Player's gender to determine which database-table should be loaded
-    this.player = this.pService.getPlayer();
-    if (this.player.gender === 'male') {
-      this.players = this.db.list('men');
-    } else if (this.player.gender === 'female') {
-      this.players = this.db.list('women');
-    } else {
-      this.router.navigate(['admin']);
+    ngOnInit() {
+
     }
-    this.createForm();
-  }
 
-  onUpdate() {
-    this.players.update(this.pService.playerKey, this.editForm.value);
-  }
+  // ngOnInit() {
+  //   // Extract Player's gender to determine which database-table should be loaded
+  //   this.player = this.pService.getPlayer();
+  //   if (this.player.gender === 'male') {
+  //     this.players = this.db.list('men');
+  //   } else if (this.player.gender === 'female') {
+  //     this.players = this.db.list('women');
+  //   } else {
+  //     this.router.navigate(['admin']);
+  //   }
+  //   this.createForm();
+  // }
 
-  onDelete() {
-    this.players.remove(this.pService.playerKey);
-    this.router.navigate(['admin']);
-  }
+  // onUpdate() {
+  //   this.players.update(this.pService.playerKey, this.editForm.value);
+  // }
 
-  onCancel() {
-    this.router.navigate(['admin']);
-  }
+  // onDelete() {
+  //   this.players.remove(this.pService.playerKey);
+  //   this.router.navigate(['admin']);
+  // }
 
-  createForm() {
-    this.editForm = this.fb.group({
-      firstName: this.player.firstName,
-      lastName: this.player.lastName,
-      email: this.player.email,
-      gender: this.player.gender,
-      rank: this.player.rank
-    });
-  }
+  // onCancel() {
+  //   this.router.navigate(['admin']);
+  // }
 
-  onSubmit() {
-  }
+  // createForm() {
+  //   this.editForm = this.fb.group({
+  //     firstName: this.player.firstName,
+  //     lastName: this.player.lastName,
+  //     email: this.player.email,
+  //     gender: this.player.gender,
+  //     rank: this.player.rank
+  //   });
+  // }
+
+  // onSubmit() {
+  // }
 
 }

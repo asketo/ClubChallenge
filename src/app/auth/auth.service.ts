@@ -1,120 +1,98 @@
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-// import { Observable } from 'Rxjs/Observable';
+import {
+  AngularFireDatabase,
+  FirebaseObjectObservable
+} from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+
+import { Player } from '../players/player.model';
 
 @Injectable()
 export class AuthService {
-  // user: Observable<firebase.User>;
-  // userID: string;
-  // userName: FirebaseListObservable<any>;
+  authState: any;
+  currentUser: Observable<firebase.User>;
+  gender: string;
 
-  authState: any = null;
-
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
-    // this.user = firebaseAuth.authState;
-    this.afAuth.authState.subscribe(
-      (auth) => {
-        this.authState = auth
-      }
-    );
+  constructor(
+    private afAuth: AngularFireAuth,
+    private db: AngularFireDatabase,
+    private router: Router
+  ) {
+    this.currentUser = afAuth.authState;
   }
 
-  get authenticated(): boolean {
-    return this.authState !== null;
+  getUserID(): string {
+    return this.afAuth.auth.currentUser.uid;
   }
 
-  get currentUser(): any {
-    return this.authenticated ? this.authState : null;
+  // New login with email and password.
+  loginWithEmail(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  get currentUserObservable(): any {
+  public getAuthState(): Observable<firebase.User> {
     return this.afAuth.authState;
   }
 
-  get currentUserId(): string {
-    return this.authenticated ? this.authState.uid : '';
+  public getCurrentUser() {
+    return this.currentUser;
   }
 
-  emailSignup(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
+  public getCurrentUserEmail() {
+    return this.afAuth.auth.currentUser.email;
+  }
+
+  public updateDisplayName(name: string) {
+    return this.afAuth.auth.currentUser.updateProfile({
+      displayName: name,
+      photoURL: null
+    });
+  }
+
+  public getDisplayName(): string {
+    return this.afAuth.auth.currentUser.displayName;
+  }
+
+  emailSignup(player: Player, password: string) {
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(player.email, password)
+      .then(user => {
         this.authState = user;
-        this.updateUserData();
+        user.displayName = player.firstName;
+        player.uid = user.uid;
+        this.updateDisplayName(player.firstName);
+        this.setGenderData(player);
+        this.setUserData(player);
+        this.router.navigate(['/signin/edit']);
       })
       .catch(error => console.log(error));
   }
 
+  setGenderData(player: Player) {
+    this.db
+      .object(`/gender/${player.uid}`)
+      .set({ firstName: player.firstName, gender: player.gender });
+  }
+
+  setUserData(player: Player) {
+    this.db.object(`/${player.gender}/${player.uid}`).set(player);
+  }
+
   emailLogin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
+    return this.afAuth.auth
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
         this.authState = user;
-        this.updateUserData();
       })
       .catch(error => console.log(error));
   }
 
   signOut() {
     this.afAuth.auth.signOut();
+    this.currentUser = null; // reset
     this.router.navigate(['/']);
   }
-
-  private updateUserData(): void {
-    let path = `users/${this.currentUserId}`;
-    let data = {
-      email: this.authState.email,
-      name: this.authState.displayName
-    }
-    this.db.object(path).update(data)
-      .catch(error => console.log(error));
-  }
-
 }
-
-//    signup(email: string, password: string, name: string) {
-//      this.firebaseAuth
-//       .auth
-//       .createUserWithEmailAndPassword(email, password)
-//       .then(user => {
-//         console.log('Erfolgreich angemeldet!', user);
-//         return this.afd.object(`/users/${user.uid}`).set({
-//           name: name
-//         });
-//       })
-//       .catch(err => {
-//         console.log('Etwas ist schiefgelaufen:', err.message);
-//       });
-//    }
-
-//    login(email: string, password: string) {
-//      this.firebaseAuth
-//       .auth
-//       .signInWithEmailAndPassword(email, password)
-//       .then(value => {
-//         console.log('Einloggen erfolgreich!', value);
-//       })
-//       .catch(err => {
-//         console.log('Etwas ist schiefgelaufen!', err.message);
-//       })
-//    }
-
-//    logout() {
-//      this.firebaseAuth
-//       .auth
-//       .signOut();
-//    }
-
-//    updateName(name: string) {
-//      const userID = this.firebaseAuth.auth.currentUser.uid;
-//      this.afd.object(`/users/${userID}`).update({name: name});
-//      this.getCurrentUserName();
-//    }
-
-//    getCurrentUserName() {
-//      this.userID = this.firebaseAuth.auth.currentUser.uid;
-//     //  this.userName = this.afd.list(`/users/${this.userID}/${name}`).subscribe(value => { this.userName = value };
-//      console.log(this.userName);
-//    }
-// }

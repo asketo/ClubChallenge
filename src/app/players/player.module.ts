@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PlayersComponent } from './players.component';
+import { PlayerComponent } from './player.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerEditComponent } from './player-edit/player-edit.component';
-import { PlayersRoutingModule } from './players-routing.module';
+import { PlayerRoutingModule } from './player-routing.module';
 import { SharedFeaturesModule } from '../shared/shared-features.module';
+import { PlayerListComponent } from './player-list/player-list.component';
 
 @NgModule({
   declarations: [
-    PlayersComponent,
+    PlayerComponent,
     PlayerDetailComponent,
-    PlayerEditComponent
+    PlayerEditComponent,
+    PlayerListComponent
   ],
   imports: [
     CommonModule,
-    PlayersRoutingModule,
+    PlayerRoutingModule,
     SharedFeaturesModule
   ]
 })
-export class PlayersModule {
+export class PlayerModule {
 
 }

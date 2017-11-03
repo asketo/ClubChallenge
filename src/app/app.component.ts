@@ -1,5 +1,4 @@
-// import { Router } from '@angular/router';
-// import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from './auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   // constructor(private afAuth: AngularFireAuth, private router: Router) {}
-  constructor() {}
+  constructor(private afAuth: AuthService) {}
 
   ngOnInit() {
     // this.afAuth.authState.subscribe(

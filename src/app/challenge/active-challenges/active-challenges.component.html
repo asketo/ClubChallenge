@@ -1,0 +1,19 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <h5 class="text-center mb-4">Offene Forderungen:</h5>
+      <ul class="list-group">
+        <li *ngFor="let challenge of challengeList | async" class="list-group-item text-center mb-2">
+          {{ challenge.challengerFullName }} fordert {{ challenge.challengedFullName }}
+          <p class="mb-0">
+            <small>Forderung aktiv seit dem
+              <span class="badge badge-secondary">21.10.2017</span>
+            </small>
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>

@@ -1,29 +1,69 @@
- <div class="container">
+<div class="container py-3" *ngIf="!formIsValid">
+  <h4>Formular fehlerhaft! Bitte alle Felder korrekt ausfüllen.</h4>
+
+</div>
+
+<div class="container py-3">
   <div class="row">
-    <div class="col-xs-10 col-sm-10 col-md-7 col-lg-5">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-        <div class="form-group">
-          <label>Vorname</label>          
+    <div class="col-2"></div>
+    <div class="col">
+      <h5>Neuen Spieler erstellen:</h5>
+      <br>
+      <form [formGroup]="form" novalidate>
+        <div class="input-group">
+          <span class="input-group-addon">Vorname</span>
           <input type="text" class="form-control" formControlName="firstName">
         </div>
-        <div class="form-group">
-          <label>Nachname</label>
+        <div class="input-group">
+          <span class="input-group-addon">Nachname</span>
           <input type="text" class="form-control" formControlName="lastName">
         </div>
-        <div class="form-group">
-          <label>Email</label>
+        <div class="input-group">
+          <span class="input-group-addon">Email-Adresse</span>
           <input type="email" class="form-control" formControlName="email" email>
         </div>
-        <div class="form-group">
-          <label for="gender">Geschlecht</label>
+        <div class="input-group">
+          <span class="input-group-addon">Passwort</span>
+          <input type="password" class="form-control" formControlName="password" password>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Geschlecht</span>
           <select name="gender" id="gender" class="form-control" formControlName="gender">
             <option value="male">Männlich</option>
             <option value="female">Weiblich</option>
           </select>
         </div>
-        <button class="btn btn-success" type="submit">Senden</button>
-        <button class="btn btn-primary" type="button" (click)="onReset()">Reset</button>
+        <div class="form-group py-2">
+          <!-- Submit-button enables modal for confirmation. -->
+          <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#signupConf">Senden</button>
+          <button class="btn btn-primary" type="button" (click)="onReset()">Reset</button>
+        </div>
+
+        <!-- Modal for signup-confirmation. -->
+        <div class="modal fade" id="signupConf" tabindex="-1" role="dialog" aria-labelledby="signupConf" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">
+                  Spieler erstellen
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{ form.value.firstName }} erstellen?
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal" (click)="onSubmit()">Erstellen</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </form>
     </div>
+    <div class="col-2"></div>
   </div>
-</div> 
+</div>

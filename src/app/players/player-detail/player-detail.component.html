@@ -1,0 +1,46 @@
+<div class="col">
+  <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action" (click)="toggleEditPlayer(player)" style="cursor: pointer">
+        <span class="badge badge-secondary text-white mr-4">{{ player.rank }}</span>{{ player.firstName }} {{ player.lastName }}
+    </button>
+  </div>
+</div>
+
+<!-- Edit-Player-Area (toggleable) -->
+<div class="row py-3" *ngIf="showEditArea">
+  <div class="col-1"></div>
+  <div class="col">
+    <form #updateForm="ngForm">
+      <div class="input-group">
+        <span class="input-group-addon" id="fName">Vorname</span>
+        <input type="text" class="form-control" placeholder="{{ player.firstName }}" id="firstName"
+          name="fistName" readonly>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="lName">Nachname</span>
+        <input type="text" class="form-control" placeholder="{{ player.lastName }}" id="lastName" name="lastName" readonly>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="email">Email-Adresse</span>
+        <input type="text" class="form-control" placeholder="{{ player.email }}" id="email" name="email" readonly>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="rank">Rang</span>
+        <input type="text" class="form-control" placeholder="{{ player.rank }}" [(ngModel)]="player.rank" id="rank" name="rank">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Geschlecht</span>
+        <input type="text" class="form-control" placeholder="{{ player.gender }}" readonly>
+        <!-- <select name="gender" class="form-control" [(ngModel)]="player.gender" name="gender"> -->
+          <!-- <option value="male" [selected]="player.gender === 'male'">männlich</option> -->
+          <!-- <option value="female" [selected]="player.gender === 'female'">weiblich</option> -->
+        <!-- </select> -->
+      </div>
+      <div class="form-group py-2">
+        <button class="btn btn-outline-primary" (click)="updatePlayer()" style="cursor: pointer;">Aktualisieren</button>
+        <!-- <button class="btn btn-danger float-right" (click)="removePlayer()" style="cursor: pointer;">Spieler löschen</button> -->
+      </div>
+    </form>
+  </div>
+  <div class="col-2"></div>
+</div>

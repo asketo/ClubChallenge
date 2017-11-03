@@ -1,4 +1,138 @@
-<div class="container">
-  <h1>{{ authService.authenticated }}</h1>
-  <h1>{{ authService.currentUserId }}</h1>  
+<div class="container mx-auto py-3" style="width: 400px;" *ngIf="!player">
+  <h3>Lade Spielerprofil...</h3>
+</div>
+
+<div *ngIf="player">
+
+  <div class="container mt-3">
+    <h4>{{ player.firstName }}'s persönlicher Bereich</h4>
+    <hr>
+  </div>
+
+  <!-- This area only appears when there is no active challenge on this player. -->
+  <div class="container mt-3" *ngIf="player.challenged === false">
+    <h5>Einen Spieler herausfordern:</h5>
+    <button class="btn btn-primary" style="cursor: pointer" routerLink="/challenge">Fordern</button>
+    <hr>
+  </div>
+
+  <!-- This area only appears when there exists an active challenge. -->
+  <div class="container" *ngIf="player.challenged === true">
+    <h5 class="badge badge-warning">
+      Du hast momentan ein offenes Ranglistenspiel gegen {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName
+      }}.
+    </h5>
+
+    <!-- Score-administration -->
+    <p>
+      <button class="btn btn-outline-primary" (click)="onEnterScore()" data-toggle="collapse" data-target="#expandScoreButton">Ergebnis eintragen</button>
+    </p>
+    <div class="collapse" id="expandScoreButton">
+      <form class="form-inline">
+        <div class="list-item">
+          <select class="custom-select mb-2 mr-sm-2 mb-sm-0">
+            <option value="">{{ player.firstName }} {{ player.lastName }}</option>
+            <option value="">
+              {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
+            </option>
+          </select>
+          <button type="submit" class="btn btn-primary" disabled="true">
+            Ergebnis absenden
+          </button>
+        </div>
+      </form>
+    </div>
+    <hr>
+  </div>
+
+  <form class="container mt-3" [formGroup]="personalForm" novalidate>
+
+    <div class="container">
+      <div class="row">
+        <h5>Dein Spielerprofil:</h5>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Vorname:
+            <input type="text" class="form-control" formControlName="firstName">
+          </label>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Nachname:
+            <input type="text" class="form-control" formControlName="lastName" id="firstname">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Email:
+            <input type="text" class="form-control" formControlName="email" id="firstname" readonly>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <!-- Button trigger modal for update -->
+      <button class="btn btn-success m-1" type="submit" data-toggle="modal" data-target="#updatePlayer" style="cursor: pointer">
+        Aktualisieren
+      </button>
+
+      <!-- Modal for update -->
+      <div class="modal fade" id="updatePlayer" tabindex="-1" role="dialog" aria-labelledby="updatePlayer" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateLabel">Spieler updaten</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Möchteset Du {{ player.firstName }} {{ player.lastName }} wirklich aktualisieren?
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success" data-dismiss="modal" (click)="onUpdate()">Aktualisieren</button>
+              <button class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-primary m-1" type="button" data-toggle="modal" data-target="#updateEmail" disabled>
+        Password ändern
+      </button>
+      <button class="btn btn-outline-primary m-1" type="button" data-toggle="modal" data-target="#updatePicture" disabled>
+        Profilbild hochladen
+      </button>
+
+      <!-- Button trigger modal for delete -->
+      <button class="btn btn-danger m-1" data-toggle="modal" data-target="#deletePlayer" style="cursor: pointer">
+        {{player.firstName}} Löschen
+      </button>
+
+      <!-- Modal for delete -->
+      <div class="modal fade" id="deletePlayer" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteLabel">Spieler löschen</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Möchtest Du {{ player.firstName }} {{ player.lastName }} wirklich löschen?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="onDelete()" data-dismiss="modal">{{ player?.firstName }} löschen</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
 </div>

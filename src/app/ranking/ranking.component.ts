@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Player } from '../players/player.model';
-import { PlayersService } from '../players/players.service';
+import { PlayerService } from '../players/player.service';
 import { SortPlayersPipe } from '../shared/sort-players.pipe';
 
 @Component({
@@ -15,20 +15,22 @@ export class RankingComponent implements OnInit {
   players: FirebaseListObservable<any>;
   gender = '';
 
-  constructor(private db: AngularFireDatabase, private route: ActivatedRoute, private pService: PlayersService) {
+  constructor(
+    private db: AngularFireDatabase,
+    private route: ActivatedRoute,
+    private pService: PlayerService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
         this.gender = params['gender'];
-        this.players = this.db.list(this.gender);
+        if (this.gender === 'men') {
+          this.players = this.db.list('/male');
+        } else {
+          this.players = this.db.list('/female');
+        }
       }
     );
   }
-
-  // onDetail(player: Player) {
-  //   this.pService.setPlayer();
-  // }
-
 }

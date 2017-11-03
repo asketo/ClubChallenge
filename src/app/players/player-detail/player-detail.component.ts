@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Params } from '@angular/router'
-// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Player } from '../player.model';
-import { PlayersService } from '../players.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-player-detail',
@@ -11,11 +10,22 @@ import { PlayersService } from '../players.service';
   styleUrls: ['./player-detail.component.css']
 })
 export class PlayerDetailComponent implements OnInit {
-  player: Player;
+  @Input() player: Player;
+  showEditArea = false;
 
-  constructor(private pService: PlayersService) { }
+  constructor(
+    private playerService: PlayerService,
+    private router: Router) {
+    }
 
   ngOnInit() {
-    this.player = this.pService.getPlayer();
+  }
+
+  toggleEditPlayer(player: Player) {
+    this.showEditArea = !this.showEditArea;
+  }
+
+  updatePlayer() {
+    this.playerService.updatePlayer(this.player);
   }
 }

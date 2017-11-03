@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import * as firebase from 'firebase/app';
 
-import { PlayersService } from '../../players/players.service';
+import { PlayerService } from '../../players/player.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +12,38 @@ import { PlayersService } from '../../players/players.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  user: Observable<firebase.User>;
+  userDisplayName: string;
 
   constructor(
     private router: Router,
-    private pService: PlayersService) { }
+    private authService: AuthService,
+    private playerService: PlayerService
+  ) { }
 
   ngOnInit() {
+    this.user = this.authService.getCurrentUser();
+    this.user.subscribe(user => {
+      if (user) {
+        this.userDisplayName = user.displayName;
+      }
+    });
+  }
+
+  getUser() {
+    this.authService.getCurrentUser();
+  }
+
+  getName(): string {
+    return this.authService.getDisplayName();
+  }
+
+  getAuthState() {
+    return this.authService.getAuthState();
+  }
+
+  onLogout() {
+    this.authService.signOut();
   }
 
 }

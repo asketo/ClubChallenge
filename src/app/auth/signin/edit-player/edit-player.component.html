@@ -23,7 +23,7 @@
       }}.
     </h5>
 
-    <!-- Score-administration -->
+    <!-- Entering score of current challenge. -->
     <p>
       <button class="btn btn-outline-primary" (click)="onEnterScore()" data-toggle="collapse" data-target="#expandScoreButton">Ergebnis eintragen</button>
     </p>
@@ -31,8 +31,9 @@
       <form class="form-inline">
         <div class="list-item">
           <select class="custom-select mb-2 mr-sm-2 mb-sm-0">
-            <option value="">{{ player.firstName }} {{ player.lastName }}</option>
-            <option value="">
+            <option value="" disabled style="display: none;">Bitte auswählen...</option>
+            <option value="winnerIsPlayer">{{ player.firstName }} {{ player.lastName }}</option>
+            <option value="winnerIsOpponent">
               {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
             </option>
           </select>

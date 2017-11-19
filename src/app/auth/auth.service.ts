@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {
   AngularFireDatabase,
   FirebaseObjectObservable
-} from 'angularfire2/database';
+} from 'angularfire2/database-deprecated';
 import * as firebase from 'firebase/app';
 
 import { Player } from '../players/player.model';
@@ -60,10 +60,11 @@ export class AuthService {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(player.email, password)
       .then(user => {
+        user.updateProfile({
+          displayName: player.firstName
+        });
         this.authState = user;
-        user.displayName = player.firstName;
         player.uid = user.uid;
-        this.updateDisplayName(player.firstName);
         this.setGenderData(player);
         this.setUserData(player);
         this.router.navigate(['/signin/edit']);

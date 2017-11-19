@@ -18,32 +18,66 @@
 
   <!-- This area only appears when there exists an active challenge. -->
   <div class="container" *ngIf="player.challenged === true">
-    <h5 class="badge badge-warning">
+    <p class="bg-warning text-center">
       Du hast momentan ein offenes Ranglistenspiel gegen {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName
       }}.
-    </h5>
+    </p>
 
     <!-- Entering score of current challenge. -->
-    <p>
-      <button class="btn btn-outline-primary" (click)="onEnterScore()" data-toggle="collapse" data-target="#expandScoreButton">Ergebnis eintragen</button>
+    <p class="text-center">
+      <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#expandScoreButton">Ergebnis eintragen</button>
     </p>
     <div class="collapse" id="expandScoreButton">
-      <form class="form-inline">
-        <div class="list-item">
-          <select class="custom-select mb-2 mr-sm-2 mb-sm-0">
-            <option value="" disabled style="display: none;">Bitte auswählen...</option>
-            <option value="winnerIsPlayer">{{ player.firstName }} {{ player.lastName }}</option>
-            <option value="winnerIsOpponent">
-              {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
-            </option>
-          </select>
-          <button type="submit" class="btn btn-primary" disabled="true">
-            Ergebnis absenden
-          </button>
+      <form class="form-inline" #selectWinnerForm="ngForm" data-toggle="validator">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="selectWinner" id="selectPlayer" value="winnerIsPlayer" required [(ngModel)]="winner"> {{ player.firstName }} {{ player.lastName }}
+          </label>
         </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="selectWinner" id="selectOpponent" value="winnerIsOpponent" required [(ngModel)]="winner"> {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!selectWinnerForm.form.valid" data-toggle="modal" data-target="#winnerModal">
+          Senden
+        </button>
       </form>
     </div>
     <hr>
+  </div>
+
+  <!-- Modal for Winner-Confirmation. -->
+  <div class="modal fade" id="winnerModal" *ngIf="player.challenged === true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sieger bestätigen</h5>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="winner === 'winnerIsPlayer'">
+            Der Sieger dieser Partie lautet:
+            <h3>
+              <span class="badge badge-primary">
+                {{ player.firstName }} {{ player.lastName }}
+              </span>
+            </h3>
+          </div>
+          <div *ngIf="winner === 'winnerIsOpponent'">
+            Der Sieger dieser Partie lautet:
+            <h3>
+              <span class="badge badge-primary">
+                {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
+              </span>
+            </h3>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" data-dismiss="modal" (click)="selectWinner()">Bestätigen</button>
+          <button class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <form class="container mt-3" [formGroup]="personalForm" novalidate>

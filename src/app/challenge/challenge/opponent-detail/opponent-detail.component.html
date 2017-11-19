@@ -2,14 +2,21 @@
   <div class="card">
     <a data-toggle="collapse" [href]="'#'+index" aria-expanded="true" aria-controls="index">
       <div class="card-header" role="tab" id="headingOne">
-        <span class="badge mr-3">{{ opponent.rank }}</span>{{ opponent.firstName }} {{ opponent.lastName}}
+        <div class="row">
+          <div>
+            <span class="badge mr-3">{{ opponent.rank }}</span>{{ opponent.firstName }} {{ opponent.lastName}}
+          </div>
+          <div class="ml-auto" *ngIf="opponent.challenged === false">
+            <i class="fa fa-handshake-o text-success" aria-hidden="true"></i>
+          </div>
+        </div>
       </div>
     </a>
 
     <div [id]="index" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div *ngIf="opponent.challenged === false">
         <div class="card-body">
-          {{ opponent.firstName }} wird zur Zeit von niemandem gefordert. Möchtest Du {{ opponent.firstName }} herausfordern?
+          {{ opponent.firstName }} wird zur Zeit nicht gefordert. Möchtest Du {{ opponent.firstName }} herausfordern?
         </div>
         <div class="card-footer text-center">
           <button class="btn btn-outline-success" data-toggle="modal" [attr.data-target]="'#Modal' + index">
@@ -18,7 +25,8 @@
       </div>
       <div *ngIf="opponent.challenged === true">
         <div class="card-body">
-          {{ opponent.firstName }} hat sein aktuelles Ranglistenspiel noch nicht absolviert. Dieser Spieler kann zur Zeit nicht gefordert werden.
+          {{ opponent.firstName }} hat sein aktuelles Ranglistenspiel noch nicht absolviert. Dieser Spieler kann zur Zeit nicht gefordert
+          werden.
         </div>
       </div>
     </div>

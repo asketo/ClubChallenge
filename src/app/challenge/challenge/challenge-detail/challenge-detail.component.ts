@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FirebaseObjectObservable } from 'angularfire2/database/firebase_object_observable';
-import { FirebaseListObservable } from 'angularfire2/database/firebase_list_observable';
+import { FirebaseObjectObservable } from 'angularfire2/database-deprecated/firebase_object_observable';
+import { FirebaseListObservable } from 'angularfire2/database-deprecated/firebase_list_observable';
 
 import { Player } from '../../../players/player.model';
 

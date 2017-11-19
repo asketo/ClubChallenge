@@ -21,7 +21,7 @@ export class PlayerDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleEditPlayer(player: Player) {
+  toggleEditPlayer() {
     this.showEditArea = !this.showEditArea;
   }
 

@@ -21,7 +21,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let player of players | async | sortPlayers" class="table-row" style="cursor: pointer">
-            <th scope="row">{{ player.rank }}</th>
+            <th scope="row" *ngIf="player.rank != 999">{{ player.rank }}</th>
+            <th scope="row" *ngIf="player.rank == 999"><div class="text-info">OR*</div></th>
             <td>{{ player.firstName }} {{ player.lastName }}</td>
             <td>
               <i *ngIf="player.challenged === false" class="fa fa-times" aria-hidden="true"></i>
@@ -32,6 +33,7 @@
           </tr>
         </tbody>
       </table>
+      <small>*OR = ohne Rang</small>
     </div>
     <div class="col-2"></div>
   </div>

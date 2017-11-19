@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
+  Form,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -8,9 +9,11 @@ import {
 import { Observable, Subscription } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { FirebaseListObservable } from 'angularfire2/database/firebase_list_observable';
-import { FirebaseObjectObservable } from 'angularfire2/database/firebase_object_observable';
+import {
+  AngularFireDatabase,
+  FirebaseObjectObservable
+} from 'angularfire2/database-deprecated';
+import { FirebaseListObservable } from 'angularfire2/database-deprecated/firebase_list_observable';
 import * as firebase from 'firebase/app';
 
 import { Player } from '../../../players/player.model';
@@ -22,12 +25,15 @@ import { AuthService } from '../../auth.service';
   templateUrl: './edit-player.component.html',
   styleUrls: ['./edit-player.component.css']
 })
-export class EditPlayerComponent implements OnInit {
+export class EditPlayerComponent implements OnInit, OnDestroy {
   player: Player;
   authUser: firebase.User;
   gender: string;
   personalForm: FormGroup;
   uid: string;
+  winner: string;
+  opponent: FirebaseObjectObservable<Player>;
+  opponentSubscription: Subscription;
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -78,6 +84,15 @@ export class EditPlayerComponent implements OnInit {
 
   ngOnInit() {}
 
+  ngOnDestroy() {
+    if (
+      this.opponentSubscription != null &&
+      this.opponentSubscription !== undefined
+    ) {
+      this.opponentSubscription.unsubscribe();
+    }
+  }
+
   onUpdate() {
     // this.authUser.updateProfile({displayName: this.personalForm.value.firstName, photoURL: null});
     // Update the player's personal database record.
@@ -106,13 +121,65 @@ export class EditPlayerComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  // TODO: What is the best way? For now: add player-attribute with UID of opponent, to save one firebase-query.
-  onEnterScore() {
-  //   const activeChallUID = this.player.activeChallengeUID;
-  //   const opponentData = this.db.object(`/activeChallenged/${activeChallUID}`);
+  selectWinner() {
+    const opponentUID = this.player.activeChallenge.opponentsUID;
+    let challenger: Player;
+    let challengedPlayerUID: string = null;
+    let champ: Player;
+    this.opponentSubscription = this.db
+      .object(`/${this.player.gender}/${opponentUID}`)
+      .subscribe(opp => {
+        this.opponent = opp;
+        if (this.player.activeChallenge.isChallenger) {
+          challenger = this.player;
+          // TODO: Fix this! Getting Error (cannot read undefined) after submitting score.
+          challengedPlayerUID = this.player.activeChallenge.opponentsUID;
+        } else {
+          challenger = opp;
+          challengedPlayerUID = opp.uid;
+        }
+        // Push new entry into completedChallenges-database.
+        if (this.winner === 'winnerIsPlayer') {
+          champ = this.player;
+        } else {
+          champ = opp;
+        }
+        this.db
+          .list('/completedChallenges')
+          .push({
+            challenger: challenger.firstName + ' ' + challenger.lastName,
+            challengerUID: challenger.uid,
+            winner: champ.firstName + ' ' + champ.lastName,
+            challengedPlayer:
+              challenger.activeChallenge.opponentsFirstName +
+              ' ' +
+              challenger.activeChallenge.opponentsLastName,
+            challengedPlayerUID: challenger.activeChallenge.opponentsUID
+          })
+          .then(() => {
+            // Remove entry from activeChallenges-database.
+            this.db
+              .object(
+                `/activeChallenges/${this.player.activeChallenge
+                  .activeChallengeUID}`
+              )
+              .remove();
+            // Remove all challenge-data that is now deprecated.
+            this.db
+              .object(`/${challenger.gender}/${challenger.uid}/activeChallenge`)
+              .remove();
+            this.db
+              .object(`/${challenger.gender}/${challenger.uid}`)
+              .update({ challenged: false });
+            this.db
+              .object(
+                `/${challenger.gender}/${challengedPlayerUID}/activeChallenge`
+              )
+              .remove();
+            this.db
+              .object(`/${challenger.gender}/${challengedPlayerUID}`)
+              .update({ challenged: false });
+          });
+      });
   }
-
-  // resetAfterScoreEntered(uid: string) {
-
-  // }
 }

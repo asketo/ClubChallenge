@@ -13,6 +13,7 @@ export class Player {
       opponentsFirstName: string,
       opponentsLastName: string,
       opponentsUID: string,
-      isChallenger: string
+      isChallenger: string,
+      dateOfChallenge: Date
     }
 }

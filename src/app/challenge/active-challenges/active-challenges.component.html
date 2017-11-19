@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col">
-      <h5 class="text-center mb-4">Offene Forderungen:</h5>
+      <div class="text-center mb-4">
+        <h5>Offene Forderungen:</h5>
+        <small>(älteste zuerst)</small>
+      </div>
       <ul class="list-group">
         <li *ngFor="let challenge of challengeList | async" class="list-group-item text-center mb-2">
           {{ challenge.challengerFullName }} fordert {{ challenge.challengedFullName }}

@@ -5,7 +5,7 @@ import {
   AngularFireDatabase,
   FirebaseListObservable,
   FirebaseObjectObservable
-} from 'angularfire2/database';
+} from 'angularfire2/database-deprecated';
 
 import { AuthService } from '../auth/auth.service';
 import { Player } from './player.model';
@@ -37,9 +37,9 @@ export class PlayerService {
 
   updatePlayer(player: Player) {
     this.db.object(`${player.gender}/${player.uid}`).update(player);
-    this.db
-      .object(`/gender/${player.uid}`)
-      .set({ gender: player.gender, firstName: player.firstName });
+    // this.db
+    //   .object(`/gender/${player.uid}`)
+    //   .set({ gender: player.gender, firstName: player.firstName });
   }
 
   private handleError(error) {

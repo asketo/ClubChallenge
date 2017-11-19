@@ -1,5 +1,5 @@
 import { Component, OnInit, Query } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 
 import { PlayerService } from '../player.service';
 import { Player } from '../player.model';
@@ -21,9 +21,10 @@ export class PlayerListComponent implements OnInit {
     private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.players = this.db.list('/male', {query: {orderByChild: 'rank'}});
     this.malePlayers = this.db.list('/male', {query: {orderByChild: 'rank'}});
     this.femalePlayers = this.db.list('/female', {query: {orderByChild: 'rank'}});
+    // this.players = this.db.list('/male', {query: {orderByChild: 'rank'}});
+    this.players = this.malePlayers;
   }
 
 setGender(gender: string) {

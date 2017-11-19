@@ -46,11 +46,13 @@ export class SignupComponent implements OnInit {
       this.player.email = this.form.value.email;
       this.player.gender = this.form.value.gender;
       this.player.challenged = false;
+      this.player.rank = 999;
       // Call the signup-method in AuthService.
       this.authService.emailSignup(this.player, this.form.value.password);
       // this.playerService.createPlayer(this.player);
     } else {
       this.formIsValid = false;
+      console.log('Invalid');
     }
   }
 

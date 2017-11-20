@@ -2,6 +2,7 @@ import { FirebaseListObservable } from 'angularfire2/database-deprecated/firebas
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-active-challenges',
@@ -10,6 +11,7 @@ import 'rxjs/add/operator/take';
 })
 export class ActiveChallengesComponent implements OnInit {
   challengeList: FirebaseListObservable<any>;
+  completedChallenges: FirebaseListObservable<any>;
 
   constructor(
     private db: AngularFireDatabase
@@ -17,5 +19,10 @@ export class ActiveChallengesComponent implements OnInit {
 
   ngOnInit() {
     this.challengeList = this.db.list('/activeChallenges');
+    this.completedChallenges = this.db.list('/completedChallenges', {
+      query: {
+        limitToLast: 10
+      }
+    }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }
 }

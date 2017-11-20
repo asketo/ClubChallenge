@@ -1,22 +1,49 @@
 <div class="container py-3">
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col">
-      <div class="text-center mb-4">
-        <h5>Offene Forderungen:</h5>
-        <small>(älteste zuerst)</small>
+
+    <!-- Side-Navigation -->
+    <div class="col-4">
+      <div class="nav flex-column nav-pills bg-light" id="tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="active-tab" data-toggle="pill" href="#active" role="tab" aria-controls="active" aria-selected="true">Aktuell</a>
+        <a class="nav-link" id="completed-tab" data-toggle="pill" href="#completed" role="tab" aria-controls="completed" aria-selected="true">Abgeschlossen</a>
       </div>
-      <ul class="list-group">
-        <li *ngFor="let challenge of challengeList | async" class="list-group-item text-center mb-2">
-          {{ challenge.challengerFullName }} fordert {{ challenge.challengedFullName }}
-          <p class="mb-0">
-            <small>Forderung aktiv seit dem
-              <span class="badge badge-secondary">21.10.2017</span>
-            </small>
-          </p>
-        </li>
-      </ul>
     </div>
-    <div class="col-2"></div>
+
+    <div class="col">
+      <div class="tab-content" id="tab-content">
+
+        <!-- Active challenges -->
+        <div class="tab-pane fade show active" id="active" role="tabpanel">
+          <ul class="list-group">
+            <li *ngFor="let challenge of challengeList | async" class="list-group-item text-center mb-2">
+              {{ challenge.challengerFullName }} fordert {{ challenge.challengedFullName }}
+              <p class="mb-0">
+                <small>Forderung aktiv seit dem
+                  <h6>
+                    <span class="badge badge-warning">{{ challenge.dateOfChallengeRequest }}</span>
+                  </h6>
+                </small>
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Completed challenges -->
+        <div class="tab-pane fade" id="completed" role="tabpanel">
+          <ul class="list-group">
+            <li *ngFor="let completed of completedChallenges | async" class="list-group-item text-center mb-2">
+                <span class="badge badge-success winner" *ngIf="completed.winner == completed.challenger">
+                  {{ completed.challenger }}</span>
+              <span *ngIf="completed.winner != completed.challenger">{{ completed.challenger }}</span> hat
+                <span class="badge badge-success winner" *ngIf="completed.winner == completed.challengedPlayer">
+                  {{ completed.challengedPlayer }}</span>
+              <span *ngIf="completed.winner != completed.challengedPlayer">{{ completed.challengedPlayer }}</span> am
+              <span class="font-weight-bold">{{ completed.dateOfCompletion }}</span> gefordert.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

@@ -123,6 +123,7 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
 
   selectWinner() {
     const opponentUID = this.player.activeChallenge.opponentsUID;
+    const currentDate = new Date(Date.now()).toLocaleDateString();
     let challenger: Player;
     let challengedPlayerUID: string = null;
     let champ: Player;
@@ -154,7 +155,8 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
               challenger.activeChallenge.opponentsFirstName +
               ' ' +
               challenger.activeChallenge.opponentsLastName,
-            challengedPlayerUID: challenger.activeChallenge.opponentsUID
+            challengedPlayerUID: challenger.activeChallenge.opponentsUID,
+            dateOfCompletion: currentDate
           })
           .then(() => {
             // Remove entry from activeChallenges-database.

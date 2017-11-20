@@ -33,4 +33,14 @@ export class RankingComponent implements OnInit {
       }
     );
   }
+
+  onChangeToFemale() {
+    this.players = this.db.list('/female');
+    this.gender = 'women';
+  }
+
+  onChangeToMale() {
+    this.players = this.db.list('/male');
+    this.gender = 'men';
+  }
 }

@@ -2,8 +2,7 @@
 
   <!-- Brand -->
   <a class="navbar-brand" routerLink="">
-    <img src="../../../assets/images/rww-logo.png" alt="Rot Weiß Walldorf Logo" class="d-inline-block"
-      width="40px" height="40px">
+    <img src="../../../assets/images/rww-logo.png" alt="Rot Weiß Walldorf Logo" class="d-inline-block" width="40px" height="40px">
   </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content"
@@ -14,9 +13,16 @@
   <!-- Links -->
   <div class="collapse navbar-collapse" id="nav-content">
 
-    <!-- Ranking-Link -->
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item dropdown">
+      <!-- Ranking-Link -->
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['ranking', 'men']">
+          <button class="btn btn-outline-danger">
+            Ranglisten
+          </button>
+        </a>
+      </li>
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" id="Preview" role="button" aria-haspopup="true" aria-expanded="false">
           <button class="btn btn-outline-danger dropdown-toggle" style="cursor: pointer;">Ranglisten</button>
         </a>
@@ -26,11 +32,11 @@
           <a class="dropdown-item" [routerLink]="['ranking', 'women']">
             <i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
         </div>
-      </li>
+      </li> -->
       <!-- Forderungen-Link -->
       <li class="nav-item">
         <a class="nav-link" routerLink="active-challenges">
-          <button class="btn btn-outline-info">
+          <button class="btn btn-outline-danger">
             Forderungen
           </button>
         </a>

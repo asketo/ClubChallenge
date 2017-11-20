@@ -39,8 +39,13 @@ export class ChallengeComponent implements OnInit {
                 if (player) {
                   this.playerObject = player;
                   this.path = `/${this.playerObject.gender}`;
+                  // This player has been confirmed and now he can challenge the whole list.
                   if (player.rank === 999) {
                     this.opponents = this.db.list(this.path, {query: {orderByChild: 'rank', startAt: 1, endAt: 998}});
+                    // Fresh player. Do no calculations before he gets confirmed.
+                  } else if (player.rank === 9999) {
+                    return;
+                    // Regular player with a rank. Calculate his challenge possibilites.
                   } else {
                     this.calculateOpponents();
                   }

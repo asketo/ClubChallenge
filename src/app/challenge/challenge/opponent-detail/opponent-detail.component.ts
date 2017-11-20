@@ -25,12 +25,14 @@ export class OpponentDetailComponent implements OnInit {
 
   // This method pushes a activeChallenge-Object to its database. Then sets the both player's challenged-attribute to true.
   onChallenge(): void {
+    const currentDate = new Date(Date.now()).toLocaleDateString();
     this.activeChallengeUID = this.db.list('/activeChallenges').push({
       challengerUID: this.player.uid,
       challengedUID: this.opponent.uid,
       challengerFullName: this.player.firstName + ' ' + this.player.lastName,
       challengedFullName: this.opponent.firstName + ' ' + this.opponent.lastName,
-      gender: this.player.gender
+      gender: this.player.gender,
+      dateOfChallengeRequest: currentDate
     }).key;
     console.log(this.activeChallengeUID);
     // Update the challenger's data (Current logged in user).
@@ -43,7 +45,8 @@ export class OpponentDetailComponent implements OnInit {
             opponentsFirstName: this.opponent.firstName,
             opponentsLastName: this.opponent.lastName,
             opponentsUID: this.opponent.uid,
-            isChallenger: 'true'
+            isChallenger: 'true',
+            dateOfChallengeRequest: currentDate
           }})
       .then(res => {
         console.log(this.player.lastName + ' Challenge-Status wurde erfolgreich auf true gesetzt');
@@ -59,7 +62,8 @@ export class OpponentDetailComponent implements OnInit {
             opponentsFirstName: this.player.firstName,
             opponentsLastName: this.player.lastName,
             opponentsUID: this.player.uid,
-            isChallenger: 'false'
+            isChallenger: 'false',
+            dateOfChallengeRequest: currentDate
           }})
       .then(res => {
         console.log(this.opponent.lastName + ' Challenge-Status wurde erfolgreich auf true gesetzt');

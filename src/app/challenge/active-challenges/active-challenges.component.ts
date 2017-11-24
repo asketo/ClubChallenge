@@ -10,8 +10,8 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./active-challenges.component.css']
 })
 export class ActiveChallengesComponent implements OnInit {
-  challengeList: FirebaseListObservable<any>;
-  completedChallenges: FirebaseListObservable<any>;
+  challengeList: FirebaseListObservable<any[]>;
+  completedChallenges: FirebaseListObservable<any[]>;
 
   constructor(
     private db: AngularFireDatabase

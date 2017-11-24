@@ -19,6 +19,7 @@ import * as firebase from 'firebase/app';
 import { Player } from '../../../players/player.model';
 import { SharedFeaturesModule } from '../../../shared/shared-features.module';
 import { AuthService } from '../../auth.service';
+import { RankingService } from '../../../ranking/ranking.service';
 
 @Component({
   selector: 'app-edit-player',
@@ -40,7 +41,8 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
     private db: AngularFireDatabase,
     private router: Router,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private ranking: RankingService
   ) {
     // Initialize the form.
     this.createForm();
@@ -122,66 +124,75 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
   }
 
   selectWinner() {
+    // Some constants and variables.
     const opponentUID = this.player.activeChallenge.opponentsUID;
     const currentDate = new Date(Date.now()).toLocaleDateString();
-    let challenger: Player;
+    let challenger: string; // Full name
+    let challengerUID: string = null;
+    let challengedPlayerName: string; // Full name
     let challengedPlayerUID: string = null;
-    let champ: Player;
-    this.opponentSubscription = this.db
-      .object(`/${this.player.gender}/${opponentUID}`)
-      .subscribe(opp => {
-        this.opponent = opp;
-        if (this.player.activeChallenge.isChallenger) {
-          challenger = this.player;
-          // TODO: Fix this! Getting Error (cannot read undefined) after submitting score.
-          challengedPlayerUID = this.player.activeChallenge.opponentsUID;
-        } else {
-          challenger = opp;
-          challengedPlayerUID = opp.uid;
-        }
-        // Push new entry into completedChallenges-database.
-        if (this.winner === 'winnerIsPlayer') {
-          champ = this.player;
-        } else {
-          champ = opp;
-        }
+    let champFullName: string;
+
+    // Finding out who is the challenger and who is the challenged player.
+    if (this.player.activeChallenge.isChallenger) {
+      // In this case, the challenger is the opponent of the current (logged-in) player.
+      challenger = `${this.player.firstName} ${this.player.lastName}`;
+      challengerUID = this.player.uid;
+      challengedPlayerName = `${
+        this.player.activeChallenge.opponentsFirstName
+      } ${this.player.activeChallenge.opponentsLastName}`;
+      challengedPlayerUID = this.player.activeChallenge.opponentsUID;
+    } else {
+      // In this case, the challenger is current player's opponent. Current player is the one, who is logged in.
+      challenger = `${this.player.activeChallenge.opponentsFirstName} ${
+        this.player.activeChallenge.opponentsLastName
+      }`;
+      challengedPlayerName = `${this.player.firstName} ${this.player.lastName}`;
+      challengedPlayerUID = `${this.player.uid}`;
+      challengerUID = this.player.activeChallenge.opponentsUID;
+    }
+    // Push new entry into completedChallenges-database.
+    if (this.winner === 'winnerIsPlayer') {
+      champFullName = `${this.player.firstName} ${this.player.lastName}`;
+    } else {
+      champFullName = `${this.player.activeChallenge.opponentsFirstName} ${
+        this.player.activeChallenge.opponentsLastName
+      }`;
+    }
+    this.db
+      .list('/completedChallenges')
+      .push({
+        challenger: challenger,
+        challengerUID: challengerUID,
+        winner: champFullName,
+        challengedPlayer: challengedPlayerName,
+        challengedPlayerUID: challengedPlayerUID,
+        dateOfCompletion: currentDate
+      })
+      .then(() => {
+        // Remove entry from activeChallenges-database.
         this.db
-          .list('/completedChallenges')
-          .push({
-            challenger: challenger.firstName + ' ' + challenger.lastName,
-            challengerUID: challenger.uid,
-            winner: champ.firstName + ' ' + champ.lastName,
-            challengedPlayer:
-              challenger.activeChallenge.opponentsFirstName +
-              ' ' +
-              challenger.activeChallenge.opponentsLastName,
-            challengedPlayerUID: challenger.activeChallenge.opponentsUID,
-            dateOfCompletion: currentDate
-          })
-          .then(() => {
-            // Remove entry from activeChallenges-database.
-            this.db
-              .object(
-                `/activeChallenges/${this.player.activeChallenge
-                  .activeChallengeUID}`
-              )
-              .remove();
-            // Remove all challenge-data that is now deprecated.
-            this.db
-              .object(`/${challenger.gender}/${challenger.uid}/activeChallenge`)
-              .remove();
-            this.db
-              .object(`/${challenger.gender}/${challenger.uid}`)
-              .update({ challenged: false });
-            this.db
-              .object(
-                `/${challenger.gender}/${challengedPlayerUID}/activeChallenge`
-              )
-              .remove();
-            this.db
-              .object(`/${challenger.gender}/${challengedPlayerUID}`)
-              .update({ challenged: false });
-          });
+          .object(
+            `/activeChallenges/${
+              this.player.activeChallenge.activeChallengeUID
+            }`
+          )
+          .remove();
+        // Update the players in the database.
+        // First update the challenger's data.
+        this.db.object(`/${this.player.gender}/${challengerUID}`).update({
+          challenged: false,
+          activeChallenge: null
+        });
+        // Then update the data of the challenged player.
+        this.db.object(`/${this.player.gender}/${challengedPlayerUID}`).update({
+          challenged: false,
+          activeChallenge: null
+        });
+        // Navigate to the rankings, after the player has entered the score.
+        // TODO: Fix the 'men'-thing on ranking!
+        this.ranking.recalculateRanks();
       });
+    // });
   }
 }

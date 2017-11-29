@@ -7,7 +7,6 @@ import { environment } from '../../environments/environment';
 
 import { SortPlayersPipe } from './sort-players.pipe';
 import { AuthService } from '../auth/auth.service';
-import { RankingService } from '../ranking/ranking.service';
 
 @NgModule({
   declarations: [SortPlayersPipe],
@@ -23,7 +22,7 @@ import { RankingService } from '../ranking/ranking.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AuthService, RankingService]
+  providers: [AuthService]
 })
 export class SharedFeaturesModule {
 

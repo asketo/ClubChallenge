@@ -34,7 +34,6 @@ export class OpponentDetailComponent implements OnInit {
       gender: this.player.gender,
       dateOfChallengeRequest: currentDate
     }).key;
-    console.log(this.activeChallengeUID);
     // Update the challenger's data (Current logged in user).
     this.db.object(`/${this.player.gender}/${this.player.uid}`)
       .update({
@@ -47,10 +46,7 @@ export class OpponentDetailComponent implements OnInit {
             opponentsUID: this.opponent.uid,
             isChallenger: 'true',
             dateOfChallengeRequest: currentDate
-          }})
-      .then(res => {
-        console.log(this.player.lastName + ' Challenge-Status wurde erfolgreich auf true gesetzt');
-      });
+          }});
     // Update the opponent's data.
     this.db.object(`/${this.opponent.gender}/${this.opponent.uid}`)
       .update(
@@ -64,10 +60,7 @@ export class OpponentDetailComponent implements OnInit {
             opponentsUID: this.player.uid,
             isChallenger: 'false',
             dateOfChallengeRequest: currentDate
-          }})
-      .then(res => {
-        console.log(this.opponent.lastName + ' Challenge-Status wurde erfolgreich auf true gesetzt');
-      });
+          }});
     this.router.navigate(['/active-challenges']);
   }
 }

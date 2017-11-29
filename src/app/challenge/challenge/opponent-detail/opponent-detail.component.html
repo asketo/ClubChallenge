@@ -1,10 +1,10 @@
 <div id="accordion" role="tablist">
-  <div class="card">
+  <div class="card border-light">
     <a data-toggle="collapse" [href]="'#'+index" aria-expanded="true" aria-controls="index">
       <div class="card-header" role="tab" id="headingOne">
         <div class="row">
           <div>
-            <span class="badge mr-3">{{ opponent.rank }}</span>{{ opponent.firstName }} {{ opponent.lastName}}
+            <span class="badge badge-pill badge-warning mr-3">{{ opponent.rank }}</span>{{ opponent.firstName }} {{ opponent.lastName}}
           </div>
           <div class="ml-auto" *ngIf="opponent.challenged === false">
             <i class="fa fa-handshake-o text-success" aria-hidden="true"></i>
@@ -15,12 +15,13 @@
 
     <div [id]="index" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div *ngIf="opponent.challenged === false">
-        <div class="card-body">
-          {{ opponent.firstName }} wird zur Zeit nicht gefordert. Möchtest Du {{ opponent.firstName }} herausfordern?
-        </div>
-        <div class="card-footer text-center">
-          <button class="btn btn-outline-success" data-toggle="modal" [attr.data-target]="'#Modal' + index">
-            {{ opponent.firstName | uppercase }} HERAUSFORDERN</button>
+        <div class="card-body text-center">
+          <p>{{ opponent.firstName }} wird zur Zeit nicht gefordert.</p>
+          <p>
+            <button class="btn btn-outline-danger btn-sm" data-toggle="modal" [attr.data-target]="'#Modal' + index" style="cursor: pointer;">
+              {{ opponent.firstName | uppercase }} HERAUSFORDERN
+            </button>
+          </p>
         </div>
       </div>
       <div *ngIf="opponent.challenged === true">

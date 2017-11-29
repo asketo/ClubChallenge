@@ -16,7 +16,8 @@
         <div class="tab-pane fade show active" id="active" role="tabpanel">
           <ul class="list-group" *ngIf="(challengeList|async)?.length; else emptyChallengesTemplate">
             <li *ngFor="let challenge of challengeList | async" class="list-group-item text-center mb-2">
-              <strong>{{ challenge.challengerFullName }}</strong> fordert <strong>{{ challenge.challengedFullName }}</strong> ({{ challenge.dateOfChallengeRequest }})
+              <strong>{{ challenge.challengerFullName }}</strong> fordert <strong>{{ challenge.challengedFullName }}</strong>
+              <p class="mb-0"><i>- {{ challenge.dateOfChallengeRequest }} -</i></p>
             </li>
           </ul>
         </div>

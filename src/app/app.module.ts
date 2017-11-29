@@ -22,6 +22,7 @@ import { ChallengeComponent } from './challenge/challenge/challenge.component';
 import { ChallengeDetailComponent } from './challenge/challenge/challenge-detail/challenge-detail.component';
 import { OpponentDetailComponent } from './challenge/challenge/opponent-detail/opponent-detail.component';
 import { ActiveChallengesComponent } from './challenge/active-challenges/active-challenges.component';
+import { RankingService } from './ranking/ranking.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ActiveChallengesComponent } from './challenge/active-challenges/active-
     SharedFeaturesModule,
     AdminModule
   ],
-  providers: [PlayerService, AuthGuard],
+  providers: [PlayerService, AuthGuard, RankingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

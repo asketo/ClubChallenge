@@ -21,7 +21,7 @@ export class ActiveChallengesComponent implements OnInit {
     this.challengeList = this.db.list('/activeChallenges');
     this.completedChallenges = this.db.list('/completedChallenges', {
       query: {
-        limitToLast: 10
+        limitToLast: 25
       }
     }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }

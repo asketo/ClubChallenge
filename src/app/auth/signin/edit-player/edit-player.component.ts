@@ -27,14 +27,14 @@ import { RankingService } from '../../../ranking/ranking.service';
   styleUrls: ['./edit-player.component.css']
 })
 export class EditPlayerComponent implements OnInit, OnDestroy {
-  player: Player;
-  authUser: firebase.User;
-  gender: string;
-  personalForm: FormGroup;
-  uid: string;
-  winner: string;
-  opponent: FirebaseObjectObservable<Player>;
-  opponentSubscription: Subscription;
+  player: Player = null;
+  authUser: firebase.User = null;
+  gender: string = null;
+  personalForm: FormGroup = null;
+  uid: string = null;
+  winner: string = null;
+  opponent: FirebaseObjectObservable<Player> = null;
+  opponentSubscription: Subscription = null;
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -132,6 +132,9 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
     let challengedPlayerName: string; // Full name
     let challengedPlayerUID: string = null;
     let champFullName: string;
+    let winnerUID: string = null;
+    let loserUID: string = null;
+    let challengerIsWinner = null;
 
     // Finding out who is the challenger and who is the challenged player.
     if (this.player.activeChallenge.isChallenger) {
@@ -154,10 +157,15 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
     // Push new entry into completedChallenges-database.
     if (this.winner === 'winnerIsPlayer') {
       champFullName = `${this.player.firstName} ${this.player.lastName}`;
+      winnerUID = this.player.uid;
+      loserUID = this.player.activeChallenge.opponentsUID;
+      challengerIsWinner = true;
     } else {
       champFullName = `${this.player.activeChallenge.opponentsFirstName} ${
         this.player.activeChallenge.opponentsLastName
       }`;
+      winnerUID = this.player.activeChallenge.opponentsUID;
+      loserUID = this.player.uid;
     }
     this.db
       .list('/completedChallenges')
@@ -191,7 +199,19 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
         });
         // Navigate to the rankings, after the player has entered the score.
         // TODO: Fix the 'men'-thing on ranking!
-        this.ranking.recalculateRanks();
+
+        // If the challenger has won, call the method which reorders the ranking.
+        let challengerRank: number;
+        this.db.object(`/${this.player.gender}/${challengerUID}`).take(1).subscribe(player => {
+          challengerRank = player.rank;
+        });
+        if (challengerIsWinner) {
+          this.ranking.reorderRanks(this.player.gender, winnerUID, loserUID);
+        } else if (challengerRank === 999) {
+          // The winner is the challenged player and the challenger had no rank. The challenger's rank has to be set to last position.
+          this.ranking.putChallengerLast(this.player.gender, loserUID);
+        }
+        this.router.navigate(['/ranking/men']);
       });
     // });
   }

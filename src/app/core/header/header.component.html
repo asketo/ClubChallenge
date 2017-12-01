@@ -2,7 +2,10 @@
 
   <!-- Brand -->
   <a class="navbar-brand" routerLink="">
-    <img src="../../../assets/images/rww-logo.png" alt="Rot Weiß Walldorf Logo" class="d-inline-block" width="40px" height="40px">
+    <!-- <img src="../../../assets/images/rww-logo.png" alt="Rot Weiß Walldorf Logo" class="d-inline-block" width="40px" height="40px"> -->
+    <button class="btn btn-outline-danger">
+      <i class="fa fa-home fa-fw fa-lg" aria-hidden="true"></i>
+    </button>
   </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content"
@@ -13,7 +16,7 @@
   <!-- Links -->
   <div class="collapse navbar-collapse" id="nav-content">
 
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto mt-lg-0">
       <!-- Ranking-Link -->
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['ranking', 'men']">
@@ -22,18 +25,8 @@
           </button>
         </a>
       </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" id="Preview" role="button" aria-haspopup="true" aria-expanded="false">
-          <button class="btn btn-outline-danger dropdown-toggle" style="cursor: pointer;">Ranglisten</button>
-        </a>
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="Preview">
-          <a class="dropdown-item" [routerLink]="['ranking', 'men']">
-            <i class="fa fa-male fa-fw" aria-hidden="true"></i>Männer</a>
-          <a class="dropdown-item" [routerLink]="['ranking', 'women']">
-            <i class="fa fa-female fa-fw" aria-hidden="true"></i>Frauen</a>
-        </div>
-      </li> -->
-      <!-- Forderungen-Link -->
+
+      <!-- Challenge-Link -->
       <li class="nav-item">
         <a class="nav-link" routerLink="active-challenges">
           <button class="btn btn-outline-danger">
@@ -45,7 +38,7 @@
 
     <ul class="navbar-nav ml-auto">
 
-      <!-- only visible if Player is logged in -->
+      <!-- Only visible if player is logged in. -->
       <li class="nav-item" *ngIf="getAuthState() | async; let user; else showLogin">
         <div class="nav-link btn-group">
           <button class="btn btn-primary" type="button" routerLink="signin/edit" style="color: white; cursor: pointer">
@@ -67,7 +60,7 @@
         </div>
       </li>
 
-      <!-- only visible as guest -->
+      <!-- Only visible as guest. -->
       <ng-template #showLogin>
         <li class="nav-item">
           <a class="nav-link" routerLink="signin">
@@ -81,7 +74,7 @@
         <div class="nav-link">
 
           <button class="btn btn-outline-danger" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+            <i class="fa fa-cog fa-fw fa-lg" aria-hidden="true"></i>
           </button>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="SignIn">

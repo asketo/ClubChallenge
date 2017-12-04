@@ -4,39 +4,56 @@
 </div>
 
 <div class="container py-3">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col">
-      <h5>Neuen Spieler erstellen:</h5>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <h5 class="text-center">Neuen Spieler erstellen:</h5>
       <br>
       <form [formGroup]="form" novalidate>
+
         <div class="input-group">
-          <span class="input-group-addon">Vorname</span>
+          <span class="input-group-addon" style="width: 120px;">Vorname</span>
           <input type="text" class="form-control" formControlName="firstName">
         </div>
-        <div class="input-group">
-          <span class="input-group-addon">Nachname</span>
+
+        <div class="input-group mb-2">
+          <span class="input-group-addon" style="width: 120px;">Nachname</span>
           <input type="text" class="form-control" formControlName="lastName">
         </div>
-        <div class="input-group">
-          <span class="input-group-addon">Email-Adresse</span>
-          <input type="email" class="form-control" formControlName="email" email>
+
+        <div formGroupName="email">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa-lg"></i></span>
+            <input type="email" class="form-control" formControlName="firstEmail" email placeholder="Email-Adresse">
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-addon"><i class="fa fa-envelope fa-lg"></i></span>
+            <input type="email" class="form-control" formControlName="confirmEmail" email placeholder="Email-Adresse wiederholen">
+          </div>
         </div>
-        <div class="input-group">
-          <span class="input-group-addon">Passwort</span>
-          <input type="password" class="form-control" formControlName="password" password>
+
+        <div formGroupName="password">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>
+            <input type="password" class="form-control" formControlName="firstPassword" password placeholder="Passwort">
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>
+            <input type="password" class="form-control" formControlName="confirmPassword" password placeholder="Passwort wiederholen">
+          </div>
         </div>
+
         <div class="input-group">
-          <span class="input-group-addon">Geschlecht</span>
+          <span class="input-group-addon" style="width: 120px;">Geschlecht</span>
           <select name="gender" id="gender" class="form-control" formControlName="gender">
             <option value="male">Männlich</option>
             <option value="female">Weiblich</option>
           </select>
         </div>
-        <div class="form-group py-2">
+
+        <div class="form-group py-2 text-right">
           <!-- Submit-button enables modal for confirmation. -->
           <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#signupConf">Senden</button>
-          <button class="btn btn-primary" type="button" (click)="onReset()">Reset</button>
+          <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
         </div>
 
         <!-- Modal for signup-confirmation. -->
@@ -64,6 +81,5 @@
 
       </form>
     </div>
-    <div class="col-2"></div>
   </div>
 </div>

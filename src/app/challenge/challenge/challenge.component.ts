@@ -59,7 +59,13 @@ export class ChallengeComponent implements OnInit {
 
   calculateOpponents() {
     const end: number = this.playerObject.rank - 1;
-    const topEnd = this.calculateTopEnd();
+    let topEnd = null;
+    // This is a special case, only for rank 3.
+    if (this.playerObject.rank === 3) {
+      topEnd = 1;
+    } else {
+      topEnd = this.calculateTopEnd();
+    }
     this.opponents = this.db.list(this.path, {query: {orderByChild: 'rank', startAt: topEnd, endAt: end }});
   }
 

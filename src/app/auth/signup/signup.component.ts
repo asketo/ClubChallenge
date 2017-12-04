@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from '../../players/player.model';
 import { AuthService } from '../auth.service';
 import { PlayerService } from '../../players/player.service';
+import { PasswordValidation } from './password-validation';
+import { EmailValidation } from './email-validation';
 
 @Component({
   selector: 'app-signup',
@@ -27,13 +29,26 @@ export class SignupComponent implements OnInit {
   }
 
   createForm() {
-    this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      gender: ['', Validators.required]
-    });
+    this.form = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: this.fb.group({
+          firstEmail: ['', [Validators.required, Validators.email]],
+          confirmEmail: ['', [Validators.required, Validators.email]]
+        },
+        {
+          validator: EmailValidation.MatchEmail
+        }),
+        password: this.fb.group({
+          firstPassword: ['', Validators.required],
+          confirmPassword: ['', Validators.required]
+        },
+        {
+          validator: PasswordValidation.MatchPassword
+        }),
+        gender: ['', Validators.required]
+      });
   }
 
   ngOnInit() {}
@@ -43,12 +58,12 @@ export class SignupComponent implements OnInit {
       // Do an entry in players-database.
       this.player.firstName = this.form.value.firstName;
       this.player.lastName = this.form.value.lastName;
-      this.player.email = this.form.value.email;
+      this.player.email = this.form.value.email.firstEmail;
       this.player.gender = this.form.value.gender;
       this.player.challenged = false;
       this.player.rank = 9999;
       // Call the signup-method in AuthService.
-      this.authService.emailSignup(this.player, this.form.value.password);
+      this.authService.emailSignup(this.player, this.form.value.password.firstPassword);
       // this.playerService.createPlayer(this.player);
     } else {
       this.formIsValid = false;

@@ -128,13 +128,13 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
     const opponentUID = this.player.activeChallenge.opponentsUID;
     const currentDate = new Date(Date.now()).toLocaleDateString();
     let challenger: string; // Full name
-    let challengerUID: string = null;
+    let challengerUID: string;
     let challengedPlayerName: string; // Full name
-    let challengedPlayerUID: string = null;
+    let challengedPlayerUID: string;
     let champFullName: string;
-    let winnerUID: string = null;
-    let loserUID: string = null;
-    let challengerIsWinner = null;
+    let winnerUID: string;
+    let loserUID: string;
+    let challengerIsWinner = false;
 
     // Finding out who is the challenger and who is the challenged player.
     if (this.player.activeChallenge.isChallenger) {
@@ -159,13 +159,19 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
       champFullName = `${this.player.firstName} ${this.player.lastName}`;
       winnerUID = this.player.uid;
       loserUID = this.player.activeChallenge.opponentsUID;
-      challengerIsWinner = true;
+      if (winnerUID === challengerUID) {
+        challengerIsWinner = true;
+      }
+      // In this case, the winner is the opponent.
     } else {
       champFullName = `${this.player.activeChallenge.opponentsFirstName} ${
         this.player.activeChallenge.opponentsLastName
       }`;
       winnerUID = this.player.activeChallenge.opponentsUID;
       loserUID = this.player.uid;
+      if (winnerUID === challengerUID) {
+        challengerIsWinner = true;
+      }
     }
     this.db
       .list('/completedChallenges')

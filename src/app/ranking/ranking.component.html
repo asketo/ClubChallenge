@@ -22,7 +22,11 @@
 
   <div class="row justify-content-center py-2">
 
-    <div class="col-md-8 col-lg-6">
+    <div *ngIf="!(players|async)?.length">
+      <h5>Lade Spielerdaten...</h5>
+    </div>
+
+    <div class="col-md-8 col-lg-6" *ngIf="(players|async)?.length">
       <div class="tab-content">
         <div class="tab-pane active fade in show" id="table">
           <table class="table table-striped table-hover table-sm text-center">

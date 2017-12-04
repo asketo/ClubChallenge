@@ -44,7 +44,7 @@ export class OpponentDetailComponent implements OnInit {
             opponentsFirstName: this.opponent.firstName,
             opponentsLastName: this.opponent.lastName,
             opponentsUID: this.opponent.uid,
-            isChallenger: 'true',
+            isChallenger: true,
             dateOfChallengeRequest: currentDate
           }});
     // Update the opponent's data.
@@ -58,7 +58,7 @@ export class OpponentDetailComponent implements OnInit {
             opponentsFirstName: this.player.firstName,
             opponentsLastName: this.player.lastName,
             opponentsUID: this.player.uid,
-            isChallenger: 'false',
+            isChallenger: false,
             dateOfChallengeRequest: currentDate
           }});
     this.router.navigate(['/active-challenges']);

@@ -1,23 +1,35 @@
 <div class="container py-3">
   <div class="row justify-content-center">
 
-    <!-- Side-Navigation -->
-    <div class="col-4 col-md-3 col-lg-2">
-      <div class="nav flex-column nav-pills bg-light" id="tab" role="tablist" aria-orientation="vertical">
+
+
+  </div>
+
+  <div class="row justify-content-center">
+
+   <!-- Side-Navigation -->
+   <div class="col-auto mb-3">
+      <div class="nav nav-pills bg-light" id="tab" role="tablist" aria-orientation="horizontal">
         <a class="nav-link active" id="active-tab" data-toggle="pill" href="#active" role="tab" aria-controls="active" aria-selected="true">Aktuell</a>
         <a class="nav-link" id="completed-tab" data-toggle="pill" href="#completed" role="tab" aria-controls="completed" aria-selected="true">Abgeschlossen</a>
       </div>
     </div>
+  </div>
 
-    <div class="col-8 col-md-7 col-lg-6">
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-8 col-lg-6">
       <div class="tab-content" id="tab-content">
 
         <!-- Active challenges -->
         <div class="tab-pane fade show active" id="active" role="tabpanel">
           <ul class="list-group" *ngIf="(challengeList|async)?.length; else emptyChallengesTemplate">
             <li *ngFor="let challenge of challengeList | async" class="list-group-item text-center mb-2">
-              <strong>{{ challenge.challengerFullName }}</strong> fordert <strong>{{ challenge.challengedFullName }}</strong>
-              <p class="mb-0"><i>- {{ challenge.dateOfChallengeRequest }} -</i></p>
+              <strong>{{ challenge.challengerFullName }}</strong> fordert
+              <strong>{{ challenge.challengedFullName }}</strong>
+              <p class="mb-0">
+                <i>- {{ challenge.dateOfChallengeRequest }} -</i>
+              </p>
             </li>
           </ul>
         </div>
@@ -44,12 +56,13 @@
         </div>
 
         <ng-template #emptyCompletedChallengesTemplate>
-            <div class="list-group-item text-center">
-                Hier gibt es noch keine Ergebnisse.
-              </div>
+          <div class="list-group-item text-center">
+            Hier gibt es noch keine Ergebnisse.
+          </div>
         </ng-template>
 
       </div>
     </div>
+
   </div>
 </div>

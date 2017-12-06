@@ -1,4 +1,3 @@
-import { AuthService } from './auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,18 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  // constructor(private afAuth: AngularFireAuth, private router: Router) {}
-  constructor(private afAuth: AuthService) {}
+  constructor() {}
 
   ngOnInit() {
-    // this.afAuth.authState.subscribe(
-    //   user => {
-    //     if (user) {
-    //       this.router.navigate(['']);
-    //     } else {
-    //       this.router.navigate(['signin']);
-    //     }
-    //   });
   }
 
 }

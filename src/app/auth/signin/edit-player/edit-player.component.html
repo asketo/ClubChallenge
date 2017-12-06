@@ -31,10 +31,10 @@
 
           <div class="row">
             <div class="col">
-              <p class="bg-warning text-center">
+              <div class="alert alert-warning text-center">
                 Du hast momentan ein offenes Ranglistenspiel gegen {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName
                 }}.
-              </p>
+              </div>
             </div>
           </div>
 
@@ -146,9 +146,9 @@
               Profilbild hochladen
             </button> -->
                 <!-- Button trigger modal for delete -->
-                <button class="btn btn-outline-danger mb-1" data-toggle="modal" data-target="#deletePlayer" style="cursor: pointer">
+                <!-- <button class="btn btn-outline-danger mb-1" data-toggle="modal" data-target="#deletePlayer" style="cursor: pointer" disabled>
                   {{player.firstName}} Löschen
-                </button>
+                </button> -->
               </div>
             </div>
 
@@ -195,8 +195,6 @@
             </div>
 
           </form>
-
-
 
         </div>
       </div>

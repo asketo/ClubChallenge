@@ -7,8 +7,8 @@
 
   <div class="row justify-content-center">
 
-   <!-- Side-Navigation -->
-   <div class="col-auto mb-3">
+    <!-- Side-Navigation -->
+    <div class="col-auto mb-3">
       <div class="nav nav-pills bg-light" id="tab" role="tablist" aria-orientation="horizontal">
         <a class="nav-link active" id="active-tab" data-toggle="pill" href="#active" role="tab" aria-controls="active" aria-selected="true">Aktuell</a>
         <a class="nav-link" id="completed-tab" data-toggle="pill" href="#completed" role="tab" aria-controls="completed" aria-selected="true">Abgeschlossen</a>
@@ -42,15 +42,20 @@
 
         <!-- Completed challenges -->
         <div class="tab-pane fade" id="completed" role="tabpanel">
+          <div class="small text-center text-muted font-italic mb-2">(Der Sieger ist jeweils grün markiert.)</div>
           <ul class="list-group" *ngIf="(completedChallenges|async)?.length; else emptyCompletedChallengesTemplate">
             <li *ngFor="let completed of completedChallenges | async" class="list-group-item text-center mb-2">
               <span class="badge badge-success winner" *ngIf="completed.winner == completed.challenger">
                 {{ completed.challenger }}</span>
-              <span *ngIf="completed.winner != completed.challenger">{{ completed.challenger }}</span> hat
+              <span *ngIf="completed.winner != completed.challenger" class="font-weight-bold">{{ completed.challenger }}</span> hat
               <span class="badge badge-success winner" *ngIf="completed.winner == completed.challengedPlayer">
                 {{ completed.challengedPlayer }}</span>
-              <span *ngIf="completed.winner != completed.challengedPlayer">{{ completed.challengedPlayer }}</span> am
-              <span class="font-weight-bold">{{ completed.dateOfCompletion }}</span> gefordert.
+              <span *ngIf="completed.winner != completed.challengedPlayer" class="font-weight-bold">{{ completed.challengedPlayer }}</span>
+              gefordert.
+              <div class="small text-muted">
+                Ergebnis eingetragen am
+                <span class="font-weight-bold">{{ completed.dateOfCompletion }}</span>.
+              </div>
             </li>
           </ul>
         </div>

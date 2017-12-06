@@ -1,27 +1,31 @@
 <div class="container py-3" *ngIf="playerObject">
+  <div class="row justify-content-center">
+    <div class="col-auto">
 
-  <div class="card border-dark" style="width: 20rem;">
-    <div class="card-header" *ngIf="playerObject.rank !== 999">
-      <div *ngIf="playerObject.rank !== 9999">
-        <h6 class="card-title mb-0 text-center">
-          Dein aktueller Rang ist:
-          <span class="badge badge-pill badge-success ml-1 mr-1">
-            {{ playerObject.rank }}
-          </span>
-        </h6>
-        <p class="card-body text-muted mb-0">Folgende Spieler können von Dir gefordert werden:</p>
+      <div class="card border-dark" style="width: 20rem;">
+        <div class="card-header" *ngIf="playerObject.rank !== 999">
+          <div *ngIf="playerObject.rank !== 9999">
+            <h6 class="card-title mb-0 text-center">
+              Dein aktueller Rang ist:
+              <span class="badge badge-pill badge-success ml-1 mr-1">
+                {{ playerObject.rank }}
+              </span>
+            </h6>
+            <p class="card-body text-muted mb-0">Folgende Spieler können von Dir gefordert werden:</p>
+          </div>
+          <div *ngIf="playerObject.rank === 9999">Du bist noch nicht freigeschaltet.</div>
+        </div>
+        <!-- Only if unranked: -->
+        <div class="card-header" *ngIf="playerObject.rank === 999">
+          Du bist derzeit ohne Rang. Du darfst jeden Spieler herausfordern. Falls Du Dein Forderungsspiel verlierst, wirst Du
+          <strong>am Ende der Rangliste</strong> eingeordnet.
+        </div>
+        <div class="list-group border-dark">
+          <app-opponent-detail *ngFor="let opponent of opponents|async|sortPlayers; let i = index;" [opponent]='opponent' [player]='playerObject'
+            [index]='i'></app-opponent-detail>
+        </div>
       </div>
-      <div *ngIf="playerObject.rank === 9999">Du bist noch nicht freigeschaltet.</div>
-    </div>
-    <!-- Only if unranked: -->
-    <div class="card-header" *ngIf="playerObject.rank === 999">
-      Du bist derzeit ohne Rang. Du darfst jeden Spieler herausfordern. Falls Du Dein Forderungsspiel verlierst, wirst Du
-      <strong>am Ende der Rangliste</strong> eingeordnet.
-    </div>
-    <div class="list-group border-dark">
-      <app-opponent-detail *ngFor="let opponent of opponents|async|sortPlayers; let i = index;" [opponent]='opponent' [player]='playerObject'
-        [index]='i'></app-opponent-detail>
+
     </div>
   </div>
-
 </div>

@@ -2,7 +2,7 @@
 
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6 text-center">
-      <h5 *ngIf="gender === 'men'">Rangliste Herren</h5>
+      <h5 *ngIf="gender === 'men'">Rangliste Gesamt</h5>
       <h5 *ngIf="gender === 'women'">Rangliste Damen</h5>
     </div>
   </div>
@@ -11,7 +11,7 @@
     <div class="col-md-8 col-lg-6">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a href="#table" class="nav-link active" data-toggle="tab" (click)="onChangeToMale()">Herren</a>
+          <a href="#table" class="nav-link active" data-toggle="tab" (click)="onChangeToMale()">Gesamt</a>
         </li>
         <li class="nav-item">
           <a href="#table" class="nav-link" data-toggle="tab" (click)="onChangeToFemale()">Damen</a>
@@ -60,7 +60,7 @@
       </div>
       <div class="alert alert-warning mt-2 small">
         Hier seht Ihr lediglich die Ranglisten, Ihr könnt hier <span class="font-weight-bold">nicht</span> fordern. Das Fordern funktioniert nur über die Option im persönlichen Bereich. Dazu müsst Ihr natürlich angemeldet sein. Die Funktion berechnet automatisch wen Ihr fordern dürft und wen nicht.
-        <br>Da momenten die Testphase läuft, sind das hier alles nur "Phantasie-Ränge". Ihr könnt Euch mit dem System vertraut machen und Leute fordern und einfach <span class="font-weight-bold">irgendein</span> Ergebnis eintragen.
+        <br>Da momentan die Testphase läuft, sind das hier alles nur "Phantasie-Ränge". Ihr könnt Euch mit dem System vertraut machen und Leute fordern und einfach <span class="font-weight-bold">irgendein</span> Ergebnis eintragen.
         <br>Am Montag wird alles auf Null gesetzt und erst dann geht es richtig los. Viel Spas beim ausprobieren!
       </div>
       <small>*OR = Ohne Rang: Dieser Spieler darf einen beliebigen Spieler fordern.</small>

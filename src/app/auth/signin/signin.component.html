@@ -29,6 +29,11 @@
           <button type="submit" (click)="onLogin()" [disabled]="!email || !password" class="btn btn-primary" style="cursor: pointer;">
             <i class="fa fa-sign-in"></i> Anmelden</button>
         </div>
+        <div class="alert alert-danger" *ngIf="loginError">
+          <h6 class="text-center">Anmeldung fehlgeschlagen!</h6>
+          Login-Daten sind fehlerhaft, oder der Account existiert nicht.
+          <br><span class="small">Die Funktion "Passwort zurücksetzen" wird demnächst implementiert.</span>
+        </div>
         <!-- </div> -->
       </form>
     </div>

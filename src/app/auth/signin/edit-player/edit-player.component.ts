@@ -63,7 +63,8 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
                   firstName: player.firstName,
                   lastName: player.lastName,
                   gender: player.gender,
-                  email: player.email
+                  email: player.email,
+                  rank: player.rank
                 });
               });
           }
@@ -181,7 +182,8 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
         winner: champFullName,
         challengedPlayer: challengedPlayerName,
         challengedPlayerUID: challengedPlayerUID,
-        dateOfCompletion: currentDate
+        dateOfCompletion: currentDate,
+        challengedPlayerRank: this.player.activeChallenge.challengedPlayerRank
       })
       .then(() => {
         // Remove entry from activeChallenges-database.

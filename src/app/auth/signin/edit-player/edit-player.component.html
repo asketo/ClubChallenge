@@ -20,8 +20,14 @@
       <!-- This area only appears when there is no active challenge on this player. -->
       <div class="row" *ngIf="player.challenged === false">
         <div class="col">
-          <h5>Einen Spieler herausfordern:</h5>
-          <button class="btn btn-primary" style="cursor: pointer" routerLink="/challenge">Fordern</button>
+          <h5>Dein aktueller Rang:
+            <span class="badge badge-success">{{ player.rank }}</span>
+          </h5>
+          <button class="btn btn-primary my-2" style="cursor: pointer" routerLink="/challenge">Einen Spieler fordern</button>
+          <div class="alert alert-warning">
+            <span class="small">Wenn Du forderst und Dein Spiel verlierst, warte bitte 1-2 Tage bis Du neu forderst, damit Spieler hinter Dir
+              die Chance haben, Dich zu fordern.</span>
+          </div>
         </div>
       </div>
 
@@ -120,16 +126,27 @@
             </div>
 
             <div class="row">
-              <div class="col">
-                <label>Vorname:
+              <div class="col-10 col-sm-8">
+                <div class="input-group my-1">
+                  <span class="input-group-addon">Vorname:</span>
                   <input type="text" class="form-control" formControlName="firstName">
-                </label>
-                <label>Nachname:
+                </div>
+                <div class="input-group my-1">
+                  <span class="input-group-addon">Nachname:</span>
                   <input type="text" class="form-control" formControlName="lastName" id="firstname">
-                </label>
-                <label>Email:
-                  <input type="text" class="form-control" formControlName="email" id="firstname" readonly>
-                </label>
+                </div>
+                <div class="input-group my-1">
+                  <span class="input-group-addon">Email:</span>
+                  <input class="form-control" type="text" placeholder="{{ personalForm.value.email }}" readonly>
+                </div>
+                <div class="input-group my-1" *ngIf="personalForm.value.gender === 'male'">
+                  <span class="input-group-addon">Rangliste:</span>
+                  <input class="form-control" type="text" placeholder="Gesamt" readonly>
+                </div>
+                <div class="input-group my-1" *ngIf="personalForm.value.gender === 'female'">
+                  <span class="input-group-addon">Rangliste:</span>
+                  <input class="form-control" type="text" placeholder="Damen" readonly>
+                </div>
               </div>
             </div>
 

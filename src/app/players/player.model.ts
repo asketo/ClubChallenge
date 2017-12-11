@@ -14,6 +14,7 @@ export class Player {
       opponentsLastName: string,
       opponentsUID: string,
       isChallenger: string,
-      dateOfChallenge: Date
+      dateOfChallenge: Date,
+      challengedPlayerRank: number
     }
 }

@@ -38,8 +38,9 @@
           <div class="row">
             <div class="col">
               <div class="alert alert-warning text-center">
-                Du hast momentan ein offenes Ranglistenspiel gegen {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName
-                }}.
+                Du hast momentan ein offenes Ranglistenspiel gegen
+                <span class="font-weight-bold">{{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
+                </span>.
               </div>
             </div>
           </div>
@@ -55,9 +56,9 @@
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-auto">
+            <div class="col">
               <div class="collapse" id="expandScoreButton">
-                <form class="form-inline" #selectWinnerForm="ngForm" data-toggle="validator">
+                <form #selectWinnerForm="ngForm" data-toggle="validator">
                   <div class="form-check form-check-inline">
                     <label class="form-check-label">
                       <input class="form-check-input" type="radio" name="selectWinner" id="selectPlayer" value="winnerIsPlayer" required [(ngModel)]="winner"> {{ player.firstName }} {{ player.lastName }}
@@ -68,9 +69,48 @@
                       <input class="form-check-input" type="radio" name="selectWinner" id="selectOpponent" value="winnerIsOpponent" required [(ngModel)]="winner"> {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
                     </label>
                   </div>
-                  <button type="submit" class="btn btn-outline-danger" [disabled]="!selectWinnerForm.form.valid" data-toggle="modal" data-target="#winnerModal">
-                    Senden
-                  </button>
+                  <div class="form-group small text-muted mb-1">
+                    Bitte das Ergebnis aus der Sicht des Siegers eintragen:
+                  </div>
+                  <!-- Set 1 -->
+                  <div class="input-group">
+                    <div class="input-group-addon" style="width: auto;">
+                      Satz 1
+                    </div>
+                    <input type="number" class="form-control" id="setOneWinner" min="0" max="30" maxlength="2" [(ngModel)]="setOneWinner" name="setOneWinner">
+                    <div class="input-group-addon" style="width: auto;">
+                      :
+                    </div>
+                    <input type="number" class="form-control" id="setOneLoser" min="0" max="30" maxlength="2" [(ngModel)]="setOneLoser" name="setOneLoser">
+                  </div>
+                  <!-- Set 2 -->
+                  <div class="input-group">
+                    <div class="input-group-addon" style="width: auto;">
+                      Satz 2
+                    </div>
+                    <input type="number" class="form-control" id="setTwoWinner" min="0" max="30" maxlength="2" [(ngModel)]="setTwoWinner" name="setTwoWinner">
+                    <div class="input-group-addon" style="width: auto;">
+                      :
+                    </div>
+                    <input type="number" class="form-control" id="setTwoLoser" min="0" max="30" maxlength="2" [(ngModel)]="setTwoLoser" name="setTwoLoser">
+                  </div>
+                  <!-- Set 3 -->
+                  <div class="input-group">
+                    <div class="input-group-addon" style="width: auto;">
+                      Satz 3
+                    </div>
+                    <input type="number" class="form-control" id="setThreeWinner" min="0" max="30" maxlength="2" [(ngModel)]="setThreeWinner"
+                      name="setThreeWinner">
+                    <div class="input-group-addon" style="width: auto;">
+                      :
+                    </div>
+                    <input type="number" class="form-control" id="setThreeLoser" min="0" max="30" maxlength="2" [(ngModel)]="setThreeLoser" name="setThreeLoser">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-outline-danger mt-2" [disabled]="!selectWinnerForm.form.valid" data-toggle="modal" data-target="#winnerModal">
+                      Senden
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -83,26 +123,32 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Sieger bestätigen</h5>
+              <h5 class="modal-title">Sieger bestätigen:</h5>
             </div>
             <div class="modal-body">
-              <div *ngIf="winner === 'winnerIsPlayer'">
-                Der Sieger dieser Partie lautet:
-                <h3>
-                  <span class="badge badge-primary">
+              <div *ngIf="winner === 'winnerIsPlayer'" class="alert alert-warning text-center">
+                <h4>
                     {{ player.firstName }} {{ player.lastName }}
-                  </span>
-                </h3>
+                </h4>
               </div>
-              <div *ngIf="winner === 'winnerIsOpponent'">
-                Der Sieger dieser Partie lautet:
-                <h3>
-                  <span class="badge badge-primary">
+              <div *ngIf="winner === 'winnerIsOpponent'" class="alert alert-warning text-center">
+                <h4>
                     {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
-                  </span>
-                </h3>
+                </h4>
               </div>
-              <p>Sobald Du auf Bestätigen klickst, wird die Rangliste aktualisiert.</p>
+              <p>
+                gewinnt mit
+              </p>
+              <div class="list-group-item list-group-item-warning text-center">
+                <span class="font-weight-bold">
+                  <h4 *ngIf="!setThreeWinner">
+                    {{ setOneWinner }} : {{ setOneLoser }}, {{ setTwoWinner }} : {{ setTwoLoser }}
+                  </h4>
+                  <h4 *ngIf="setThreeWinner">
+                    {{ setOneWinner }} : {{ setOneLoser }}, {{ setTwoWinner }} : {{ setTwoLoser }}, {{ setThreeWinner }} : {{ setThreeLoser }}
+                  </h4>
+                </span>
+              </div>
             </div>
             <div class="modal-footer">
               <button class="btn btn-success" data-dismiss="modal" (click)="selectWinner()">Bestätigen</button>

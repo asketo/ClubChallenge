@@ -42,19 +42,34 @@
 
         <!-- Completed challenges -->
         <div class="tab-pane fade" id="completed" role="tabpanel">
-          <div class="small text-center text-muted font-italic mb-2">(Der Sieger ist jeweils grün markiert.)</div>
           <ul class="list-group" *ngIf="(completedChallenges|async)?.length; else emptyCompletedChallengesTemplate">
-            <li *ngFor="let completed of completedChallenges | async" class="list-group-item text-center mb-2">
-              <span class="badge badge-success winner" *ngIf="completed.winner == completed.challenger">
-                {{ completed.challenger }}</span>
-              <span *ngIf="completed.winner != completed.challenger" class="font-weight-bold">{{ completed.challenger }}</span> hat
-              <span class="badge badge-success winner" *ngIf="completed.winner == completed.challengedPlayer">
-                {{ completed.challengedPlayer }}</span>
-              <span *ngIf="completed.winner != completed.challengedPlayer" class="font-weight-bold">{{ completed.challengedPlayer }}</span>
-              gefordert.
-              <div class="small text-muted">
-                Ergebnis eingetragen am
-                <span class="font-weight-bold">{{ completed.dateOfCompletion }}</span>.
+            <li *ngFor="let completed of completedChallenges | async" class="list-group-item text-center mb-2 border-0">
+              <div class="card text-center">
+                <div class="card-header">
+                  <span class="font-weight-bold">
+                    {{ completed.challenger }}
+                  </span>
+                  hat
+                  <span class="font-weight-bold">
+                    {{ completed.challengedPlayer }}
+                  </span>
+                  gefordert.
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ completed.winner }}</h5>
+                  <p class="card-text" *ngIf="(completed.setThreeWinner === 0) && (completed.setThreeLoser === 0); else threeSets">gewinnt mit <span class="badge badge-pill badge-warning mx-1">{{ completed.setOneWinner }} : {{ completed.setOneLoser }}</span> und <span class="badge badge-pill badge-warning mx-1">{{ completed.setTwoWinner
+                    }} : {{ completed.setTwoLoser }}</span>.
+                  </p>
+                  <ng-template #threeSets>
+                    <p class="card-text">gewinnt mit <span class="badge badge-pill badge-warning mx-1">{{ completed.setOneWinner }} : {{ completed.setOneLoser }}</span>, <span class="badge badge-pill badge-warning mx-1">{{ completed.setTwoWinner
+                      }} : {{ completed.setTwoLoser }}</span> und <span class="badge badge-pill badge-warning mx-1">{{ completed.setThreeWinner }} : {{ completed.setThreeLoser }}</span>.
+                    </p>
+                  </ng-template>
+                </div>
+                <div class="card-footer text-muted">
+                  Ergebnis eingetragen am
+                  <span class="font-weight-bold">{{ completed.dateOfCompletion }}</span>.
+                </div>
               </div>
             </li>
           </ul>

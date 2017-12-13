@@ -36,6 +36,14 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
   opponent: FirebaseObjectObservable<Player> = null;
   opponentSubscription: Subscription = null;
 
+  // Variables for the score
+  setOneWinner: number;
+  setTwoWinner: number;
+  setThreeWinner: number;
+  setOneLoser: number;
+  setTwoLoser: number;
+  setThreeLoser: number;
+
   constructor(
     private fireAuth: AngularFireAuth,
     private db: AngularFireDatabase,
@@ -174,6 +182,11 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
         challengerIsWinner = true;
       }
     }
+    // If there is no score for the third set.
+    if (this.setThreeWinner == null && this.setThreeLoser == null) {
+      this.setThreeWinner = 0;
+      this.setThreeLoser = 0;
+    }
     this.db
       .list('/completedChallenges')
       .push({
@@ -183,7 +196,13 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
         challengedPlayer: challengedPlayerName,
         challengedPlayerUID: challengedPlayerUID,
         dateOfCompletion: currentDate,
-        challengedPlayerRank: this.player.activeChallenge.challengedPlayerRank
+        challengedPlayerRank: this.player.activeChallenge.challengedPlayerRank,
+        setOneWinner: this.setOneWinner,
+        setOneLoser: this.setOneLoser,
+        setTwoWinner: this.setTwoWinner,
+        setTwoLoser: this.setTwoLoser,
+        setThreeWinner: this.setThreeWinner,
+        setThreeLoser: this.setThreeLoser
       })
       .then(() => {
         // Remove entry from activeChallenges-database.

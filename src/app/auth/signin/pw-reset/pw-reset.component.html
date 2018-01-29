@@ -1,0 +1,26 @@
+<div class="container py-3">
+
+  <div class="row justify-content-center">
+    <div class="col">
+      <h5>Passwort zurücksetzen:</h5>
+      <form class="form-inline" #pwresetForm="ngForm">
+        <input type="text" class="form-control mr-sm-2" id="resetEmail" placeholder="Email-Adresse" name="resetEmail" [(ngModel)]="resetEmail">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Senden</button>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="emailSuccess">
+    <div class="col">
+      <div class="alert alert-success">
+        Email erfolgreich abgeschickt. Bitte folge den Anweisungen in der Email, um Dein Passwort zurückzusetzen.
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="emailError">
+    <div class="col">
+      <div class="alert alert-danger">
+        Du hast eine ungültige Email-Adresse eingegeben.
+      </div>
+    </div>
+  </div>
+</div>

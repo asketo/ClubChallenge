@@ -103,4 +103,14 @@ export class AuthService {
     this.currentUser = null; // reset
     this.router.navigate(['/']);
   }
+
+  resetPassword(email: string): Promise<boolean> {
+    return this.afAuth.auth.sendPasswordResetEmail(email)
+      .then((success) => {
+        return true;
+      })
+      .catch((error) => {
+        return false;
+      })
+  }
 }

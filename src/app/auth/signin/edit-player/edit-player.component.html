@@ -17,17 +17,29 @@
         </div>
       </div>
 
-      <!-- This area only appears when there is no active challenge on this player. -->
-      <div class="row" *ngIf="player.challenged === false">
+      <div class="row">
         <div class="col">
-          <h5>Dein aktueller Rang:
-            <span class="badge badge-success">{{ player.rank }}</span>
-          </h5>
-          <button class="btn btn-primary my-2" style="cursor: pointer" routerLink="/challenge">Einen Spieler fordern</button>
-          <div class="alert alert-warning">
-            <span class="small">Wenn Du forderst und Dein Spiel verlierst, warte bitte 1-2 Tage bis Du neu forderst, damit Spieler hinter Dir
-              die Chance haben, Dich zu fordern.</span>
+          <!-- Display the rank if player has a rank. -->
+          <div *ngIf="player.rank < 999">
+            <h5>Dein aktueller Rang:
+              <span class="badge badge-success">{{ player.rank }}</span>
+            </h5>
           </div>
+          <div class="alert alert-warning small mb-0" *ngIf="player.rank === 999">
+            Du bist derzeit ohne Rang. Du darfst einen beliebigen Spieler fordern. Verlierst du das erste Forderungsspiel, darfst Du
+            noch einmal beliebig fordern, jedoch höchstens drei Ränge unter Deiner ersten Forderung. Verlierst Du auch dieses
+            Spiel, wirst Du an letzer Stelle eingeordnet.
+          </div>
+          <div class="alert alert-warning small mb-0" *ngIf="player.rank === 9999">
+            Du hast Dich kürzlich angemeldet. Du wirst demnächst freigeschaltet und darfst fordern.
+          </div>
+        </div>
+      </div>
+
+      <!-- This area only appears when there is no active challenge on this player. -->
+      <div class="row" *ngIf="player.challenged === false && player.rank <= 999">
+        <div class="col">
+          <button class="btn btn-primary my-2" style="cursor: pointer" routerLink="/challenge">Einen Spieler fordern</button>
         </div>
       </div>
 
@@ -128,12 +140,12 @@
             <div class="modal-body">
               <div *ngIf="winner === 'winnerIsPlayer'" class="alert alert-warning text-center">
                 <h4>
-                    {{ player.firstName }} {{ player.lastName }}
+                  {{ player.firstName }} {{ player.lastName }}
                 </h4>
               </div>
               <div *ngIf="winner === 'winnerIsOpponent'" class="alert alert-warning text-center">
                 <h4>
-                    {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
+                  {{ player.activeChallenge.opponentsFirstName }} {{ player.activeChallenge.opponentsLastName }}
                 </h4>
               </div>
               <p>

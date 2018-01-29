@@ -46,6 +46,10 @@ export class SigninComponent implements OnInit, OnDestroy {
       });
   }
 
+  onPasswordReset() {
+    this.router.navigate(['pw-reset']);
+  }
+
   onSignup() {
     this.router.navigate(['signup']);
   }

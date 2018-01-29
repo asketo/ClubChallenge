@@ -11,6 +11,7 @@ import { SignupSuccessComponent } from './auth/signup-success/signup-success.com
 import { EditPlayerComponent } from './auth/signin/edit-player/edit-player.component';
 import { ChallengeComponent } from './challenge/challenge/challenge.component';
 import { ActiveChallengesComponent } from './challenge/active-challenges/active-challenges.component';
+import { PwResetComponent } from 'app/auth/signin/pw-reset/pw-reset.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuard] },
     { path: 'signin', component: SigninComponent },
     { path: 'signin/edit', component: EditPlayerComponent },
+    { path: 'pw-reset', component: PwResetComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'signup/signup-success', component: SignupSuccessComponent },
     { path: 'challenge', component: ChallengeComponent },

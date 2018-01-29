@@ -1,4 +1,4 @@
-<div class="container py-3 text-center">
+<div class="container py-3">
 
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-5">
@@ -22,7 +22,7 @@
         <div class="alert alert-danger" *ngIf="loginError">
           <h6>Anmeldung fehlgeschlagen!</h6>
           <p class="text-left mb-1">Die Login-Daten sind fehlerhaft, oder der Account existiert nicht.</p>
-          <span class="small">(Die Funktion "Passwort zurücksetzen" wird demnächst implementiert.)</span>
+          <span class="small"><a routerLink="/" (click)="onPasswordReset()">Passwort zurücksetzen</a></span>
         </div>
 
         <div class="mb-1">
@@ -32,6 +32,17 @@
 
         <!-- </div> -->
       </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+      <div class="mb-2">
+        <hr>
+        Passwort vergessen?
+      </div>
+      <button (click)="onPasswordReset()" class="btn btn-primary" style="cursor: pointer;">
+          Passwort zurücksetzen</button>
     </div>
   </div>
 

@@ -23,6 +23,7 @@ import { ChallengeDetailComponent } from './challenge/challenge/challenge-detail
 import { OpponentDetailComponent } from './challenge/challenge/opponent-detail/opponent-detail.component';
 import { ActiveChallengesComponent } from './challenge/active-challenges/active-challenges.component';
 import { RankingService } from './ranking/ranking.service';
+import { PwResetComponent } from './auth/signin/pw-reset/pw-reset.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RankingService } from './ranking/ranking.service';
     ChallengeComponent,
     ChallengeDetailComponent,
     OpponentDetailComponent,
-    ActiveChallengesComponent
+    ActiveChallengesComponent,
+    PwResetComponent
   ],
   imports: [
     BrowserModule,

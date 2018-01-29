@@ -15,11 +15,6 @@
           </div>
           <div *ngIf="playerObject.rank === 9999">Du bist noch nicht freigeschaltet.</div>
         </div>
-        <!-- Only if unranked: -->
-        <div class="card-header" *ngIf="playerObject.rank === 999">
-          Du bist derzeit ohne Rang. Du darfst jeden Spieler herausfordern. Falls Du Dein Forderungsspiel verlierst, wirst Du
-          <strong>am Ende der Rangliste</strong> eingeordnet. (Wenn es Deine erste Niederlage war, wirst Du einmalig nochmal auf OR (Ohne Rang) gesetzt und darfst drei Ränge tiefer fordern.)
-        </div>
         <div class="list-group border-dark">
           <app-opponent-detail *ngFor="let opponent of opponents|async|sortPlayers; let i = index;" [opponent]='opponent' [player]='playerObject'
             [index]='i'></app-opponent-detail>

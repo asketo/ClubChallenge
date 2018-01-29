@@ -9,9 +9,6 @@
           <li class="nav-item">
             <a href="#rules" class="nav-link" data-toggle="tab">Regeln</a>
           </li>
-          <li class="nav-item">
-            <a href="#comingUpdates" class="nav-link" data-toggle="tab">App</a>
-          </li>
         </ul>
         <br>
       </div>
@@ -19,26 +16,19 @@
       <div class="tab-content">
 
         <div class="tab-pane text-center active fade in show" id="home">
+            <div class="alert alert-success text-left">
+                29.01.2018 - Neue Funktion: <a routerLink="/pw-reset">Passwort zurücksetzen.</a>
+              </div>
           <h5>Badminton-Vereinsrangliste</h5>
           <img src="../../assets/images/rww-logo.png" class="img-fluid" alt="RW-Logo">
-          <hr>
-          <h6>
-            Falls du noch nicht registriert bist, klicke
-            <a routerLink="/signup">hier.</a>
-          </h6>
-          <hr>
-          <div class="alert alert-success text-center">
-            <h6>Die Rangliste hat begonnen, Ihr könnt nun fordern!</h6>
+          <div class="alert">
+            <a class="btn btn-danger" routerLink="/signup">Registrieren</a>
           </div>
           <div class="alert alert-warning text-left">
-            Die Damen können sich aussuchen ob sie in nur einer Rangliste mitspielen oder in beiden gleichzeitig. Ihr braucht jedoch
-            für jede Rangliste einen separaten Account, d.h. Ihr müsst Euch zwei mal registrieren.
-          </div>
-          <div class="alert alert-warning text-left">
-            Spieler, die bei Rot-Weiss Walldorf Mitglied sind, aber bei anderen Vereinen spielen (zusätzlich alle Damen), bekommen die
-            Möglichkeit sich an einer beliebigen Stelle einzufordern.
-            <br>Verliert Ihr Euer erstes Match, so bekommt Ihr noch einmal die Möglichkeit zu fordern. Jedoch muss der Gegner
-            mindesten drei Ränge tiefer eingeordnet sein als der erste.
+            Diese Rangliste hat
+            <span class="font-weight-bold">keine Auswirkung</span> auf die Besetzung der Mannschaften!
+            <hr> Die Damen können sich aussuchen ob sie in nur einer Rangliste mitspielen oder in beiden gleichzeitig. Ihr braucht
+            jedoch für jede Rangliste einen separaten Account, d.h. Ihr müsst Euch zwei mal registrieren.
           </div>
         </div>
 
@@ -147,59 +137,9 @@
               weiterhin besteht.
             </li>
           </ul>
-
         </div>
 
-        <div class="tab-pane fade" id="comingUpdates">
-
-          <div class="alert">
-            <h6>
-              Was demnächst implementiert werden soll:
-            </h6>
-            <ul>
-              <li>
-                Email-Benachrichtigung bei Forderungseingang.
-              </li>
-              <li>
-                Passwort zurücksetzen, falls man es vergessen hat.
-              </li>
-            </ul>
-          </div>
-
-          <div class="alert">
-            <h6>
-              Letze Updates:
-            </h6>
-            <ul>
-              <li>
-                13.12.2017 - Die Ergebniseingabe ist erweitert worden. Man muss nun zusätzlich zum Sieger auch die Sätze eintragen.
-                <br>Die Anzeige der abgeschlossenen Forderungen wurde entsprechend angepasst.
-              </li>
-            </ul>
-          </div>
-
-          <div class="alert">
-            <h6>Welche Technologie steckt hinter dieser App?</h6>
-            <blockquote class="pl-3">Es handelt sich hierbei um eine sogenannte
-              <span class="font-italic">"Single-Page-Application"</span>.
-              <br> Das bedeutet, man befindet sich permanent auf nur einer Seite. Seiten werden nicht komplett neu aufgerufen,
-              es werden lediglich nur einzelne Inhalte ausgetauscht.
-            </blockquote>
-          </div>
-
-          <div class="alert">
-            <h6>Die Komponenten:</h6>
-            <ul>
-              <li>
-                <span class="font-italic">Front-End:</span> Angular (derzeit Version 4) & HTML 5 & Bootstrap 4.0
-              </li>
-              <li>
-                <span class="font-italic">Back-End:</span> Google Firebase Real-Time-Database
-              </li>
-            </ul>
-          </div>
-
-        </div>
       </div>
     </div>
   </div>
+</div>

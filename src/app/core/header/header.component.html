@@ -20,7 +20,7 @@
       <!-- Ranking-Link -->
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['ranking', 'men']">
-          <button class="btn btn-outline-danger">
+          <button class="btn btn-outline-danger myHeader">
             Ranglisten
           </button>
         </a>
@@ -29,7 +29,7 @@
       <!-- Challenge-Link -->
       <li class="nav-item">
         <a class="nav-link" routerLink="active-challenges">
-          <button class="btn btn-outline-danger">
+          <button class="btn btn-outline-danger myHeader">
             Forderungen
           </button>
         </a>
@@ -41,7 +41,7 @@
       <!-- Only visible if player is logged in. -->
       <li class="nav-item" *ngIf="getAuthState() | async; let user; else showLogin">
         <div class="nav-link btn-group">
-          <button class="btn btn-primary" type="button" routerLink="signin/edit" style="color: white; cursor: pointer">
+          <button class="btn btn-primary myHeader" type="button" routerLink="signin/edit" style="color: white; cursor: pointer">
             <i class="fa fa-user fa-fw" style="color: white; cursor: pointer;"></i> {{ user.displayName }}
           </button>
           <button class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
@@ -64,7 +64,7 @@
       <ng-template #showLogin>
         <li class="nav-item">
           <a class="nav-link" routerLink="signin">
-            <button class="btn btn-primary" style="cursor: pointer">
+            <button class="btn btn-primary myHeader" style="cursor: pointer">
               <i class="fa fa-sign-in"></i> Anmelden</button>
           </a>
         </li>

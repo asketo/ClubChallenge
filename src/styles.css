@@ -2,6 +2,7 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 
 .done {
     position: fixed;
@@ -11,4 +12,8 @@
 
 tr.table-row:hover {
   background:lightcoral;
+}
+
+.myHeader {
+  font-family: 'Oswald', sans-serif;
 }

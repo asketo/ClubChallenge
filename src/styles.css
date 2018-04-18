@@ -10,10 +10,6 @@
     right: 20px;
 }
 
-tr.table-row:hover {
-  background:lightcoral;
-}
-
 .myHeader {
   font-family: 'Oswald', sans-serif;
 }

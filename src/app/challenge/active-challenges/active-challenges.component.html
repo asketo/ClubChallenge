@@ -51,7 +51,11 @@
                   gefordert.
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{ completed.winner }}</h5>
+                  <h5 class="card-title">
+                    <span class="winner text-white bg-dark">
+                      {{ completed.winner }}
+                    </span>
+                  </h5>
                   <p class="card-text" *ngIf="(completed.setThreeWinner === 0) && (completed.setThreeLoser === 0); else threeSets">gewinnt mit <span class="badge badge-pill badge-warning mx-1">{{ completed.setOneWinner }} : {{ completed.setOneLoser }}</span> und <span class="badge badge-pill badge-warning mx-1">{{ completed.setTwoWinner
                     }} : {{ completed.setTwoLoser }}</span>.
                   </p>

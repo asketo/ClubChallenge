@@ -39,7 +39,7 @@
       <!-- This area only appears when there is no active challenge on this player. -->
       <div class="row" *ngIf="player.challenged === false && player.rank <= 999">
         <div class="col">
-          <button class="btn btn-primary my-2" style="cursor: pointer" routerLink="/challenge">Einen Spieler fordern</button>
+          <button class="btn btn-primary my-2" style="cursor: pointer" routerLink="/challenge">Spieler fordern</button>
         </div>
       </div>
 
@@ -211,19 +211,9 @@
             <div class="row">
               <div class="col">
                 <!-- Button trigger modal for update -->
-                <button class="btn btn-outline-success mb-1" type="submit" data-toggle="modal" data-target="#updatePlayer" style="cursor: pointer">
-                  Aktualisieren
+                <button class="btn btn-secondary mb-1" type="submit" data-toggle="modal" data-target="#updatePlayer" style="cursor: pointer">
+                  Daten aktualisieren
                 </button>
-                <!-- <button class="btn btn-outline-secondary mb-1" type="button" data-toggle="modal" data-target="#updateEmail" disabled>
-              Passwort ändern
-            </button> -->
-                <!-- <button class="btn btn-outline-secondary mb-1" type="button" data-toggle="modal" data-target="#updatePicture" disabled>
-              Profilbild hochladen
-            </button> -->
-                <!-- Button trigger modal for delete -->
-                <!-- <button class="btn btn-outline-danger mb-1" data-toggle="modal" data-target="#deletePlayer" style="cursor: pointer" disabled>
-                  {{player.firstName}} Löschen
-                </button> -->
               </div>
             </div>
 

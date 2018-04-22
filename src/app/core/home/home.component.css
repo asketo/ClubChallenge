@@ -10,20 +10,12 @@ a {
   text-decoration: none;
 }
 
-.home-background {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.8)
-    ),
-    url('/assets/images/rww-logo.png');
+.with-background {
+  background-image: url('/assets/images/rw-logo-blur.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  height: 90vh;
 }
 
 .home-heading {
@@ -31,22 +23,26 @@ a {
   font-size: 1.5rem;
   font-weight: bold;
   background: linear-gradient(
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.3)
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
   );
   padding: 0.5em;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
   width: 100%;
 }
 
 .home-content {
   font-size: 1.25em;
   background: linear-gradient(
-    rgba(255, 255, 255, 0.4),
-    rgba(255, 255, 255, 0.4)
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
   );
-  border: 1px solid lightgrey;
-  border-radius: 5px;
   padding: 0.5em;
+}
+
+.rules-start {
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+  padding: 15px;
 }

@@ -1,31 +1,17 @@
 <div class="container py-3">
-
-  <!-- <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6 text-center">
-      <h5 class="myHeader" *ngIf="gender === 'men'">Rangliste Gesamt</h5>
-      <h5 class="myHeader" *ngIf="gender === 'women'">Rangliste Damen</h5>
-    </div>
-  </div> -->
-
-  <div class="row justify-content-center">
+  <div class="row justify-content-center bg-light">
     <div class="col-md-8 col-lg-6">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a href="#table" class="nav-link active text-dark bg-light" data-toggle="tab" (click)="onChangeToMale()">Gesamt</a>
-        </li>
-        <li class="nav-item">
-          <a href="#table" class="nav-link text-dark bg-light" data-toggle="tab" (click)="onChangeToFemale()">Damen</a>
-        </li>
-      </ul>
+      <div class="nav nav-pills bg-light justify-content-center" id="tab" role="tablist" aria-orientation="horizontal">
+        <a class="nav-link active" id="all" data-toggle="pill" href="#table" role="tab" aria-controls="table" aria-selected="true"
+          (click)="onChangeToMale()">Rangliste Gesamt</a>
+        <a class="nav-link" id="ladies" data-toggle="pill" href="#table" role="tab" aria-controls="table" aria-selected="true" (click)="onChangeToFemale()">Rangliste Damen</a>
+      </div>
     </div>
   </div>
-
   <div class="row justify-content-center py-2">
-
     <div *ngIf="!(players|async)?.length">
       <h5 class="myHeader">Lade Spielerdaten...</h5>
     </div>
-
     <div class="col-md-8 col-lg-6" *ngIf="(players|async)?.length">
       <div class="tab-content">
         <div class="tab-pane active fade in show" id="table">

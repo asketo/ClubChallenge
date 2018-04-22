@@ -1,7 +1,14 @@
 Style:
   home-component:
-    ☐ The background image needs to be improved.
-    ☐ The text boxes do need a redesign.
+    ✔ The background image needs to be improved. @done(18-04-22 05:59)
+      ✔ The background image needs to be repositioned in the home-component. Above the sub-navigation you can see a little bit of red. @started(18-04-22 05:28) @done(18-04-22 06:00) @lasted(32 minutes 4 seconds)
+    ✔ The text boxes do need a redesign. @done(18-04-22 05:59)
+  ranking-component:
+    ☐ Center the sub-navigation. @started(18-04-22 06:00)
+
+Content:
+  ✔ I need to change the message in home-component. @started(18-04-22 05:59) @done(18-04-22 05:59) @lasted(22 seconds)
 
 Functionality:
-  ☐ Create a email-send-function when a challenge has been created. @started(18-04-20 15:27)
+  ☐ Create a email-send-function when a challenge has been created. @started(18-04-20 17:44)
+    ☐ Either I do it with a "classic" method with the Gmail API or I try the Cloud Messaging stuff with Firebase.

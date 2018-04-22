@@ -1,33 +1,28 @@
-<div class="container py-3">
+<div class="container py-3 with-background">
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-8">
-      <div>
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a href="#home" class="nav-link active text-dark bg-light" data-toggle="tab">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#rules" class="nav-link text-dark bg-light" data-toggle="tab">Regeln</a>
-          </li>
-        </ul>
-        <br>
-      </div>
-
-      <div class="tab-content">
-
-        <div class="tab-pane text-center active fade in show" id="home">
-          <div class="home-background">
-            <div class="home-heading">Badminton Rangliste</div>
-            <div class="home-content">
-              Diese Rangliste hat
-              <span class="font-weight-bold">keine Auswirkung</span> auf die Besetzung der Mannschaften!
-              <br>Die Damen können sich aussuchen ob sie in nur einer Rangliste mitspielen oder in beiden gleichzeitig. Ihr braucht
-              jedoch für jede Rangliste einen separaten Account, d.h. Ihr müsst Euch zwei mal registrieren.
-            </div>
+      <div class="row justify-content-center bg-light">
+        <div class="col-auto mb-3">
+          <div class="nav nav-pills bg-light" id="tab" role="tablist" aria-orientation="horizontal">
+            <a class="nav-link active" id="active-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+            <a class="nav-link" id="completed-tab" data-toggle="pill" href="#rules" role="tab" aria-controls="rules" aria-selected="true">Regeln</a>
           </div>
         </div>
-
-        <div class="tab-pane fade" id="rules">
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane text-center active fade in show" id="home">
+          <div class="home-heading">Badminton Rangliste</div>
+          <div class="home-content">
+            <p>Diese Forderungs-App ist eine vereinsinterne Rangliste des Badminton Vereins Rot-Weiss Walldorf e.V.</p>
+            <p>
+              Diese Rangliste hat
+              <span class="font-weight-bold">keinen Einfluss</span> auf die Zusammenstellung der Mannschaften zur kommenden Saison! Sie wird allerding für das Setzen der Spieler bei der alljährlichen Vereinsmeisterschaft (27.05.2018) angewendet.
+            </p>
+            <p>Wer Lust hat sich regelmässig mit seinen Vereinskameraden im Eins-gegen-Eins zu messen, für den ist diese App genau das richtige.</p>
+            <p>Einfach registrieren, freigeschaltet werden, und direkt losfordern!</p>
+          </div>
+        </div>
+        <div class="tab-pane fade rules-start" id="rules">
           <h4 class="text-center">Regeln</h4>
           <br>
           <p>

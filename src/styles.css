@@ -2,14 +2,14 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+/* @import url('https://fonts.googleapis.com/css?family=Oswald'); */
+
+html, body {
+  height: 100%;
+}
 
 .done {
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
-
-.myHeader {
-  font-family: 'Oswald', sans-serif;
 }

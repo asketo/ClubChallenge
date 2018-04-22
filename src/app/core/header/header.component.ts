@@ -28,17 +28,6 @@ export class HeaderComponent implements OnInit {
         this.userDisplayName = user.displayName;
       }
     });
-
-    // When on mobile, the navbar should toggle when a link is clicked.
-    const selectLinks = document.querySelectorAll('a');
-    for (let i = 0; i < selectLinks.length; i++) {
-      console.log(selectLinks[i]);
-      // selectLinks[i].addEventListener('onclick', () => {
-      //   document
-      //     .querySelector('.navbar-collapse')
-      //     .setAttribute('collapse', 'hide');
-      // });
-    }
   }
 
   getUser() {

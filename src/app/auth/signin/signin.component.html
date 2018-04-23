@@ -1,5 +1,11 @@
 <div class="container py-3">
 
+  <div class="row justify-content-center py-2">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+      <h3>Login</h3>
+    </div>
+  </div>
+
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-5">
       <form #signinForm="ngForm">
@@ -22,7 +28,9 @@
         <div class="alert alert-danger" *ngIf="loginError">
           <h6>Anmeldung fehlgeschlagen!</h6>
           <p class="text-left mb-1">Die Login-Daten sind fehlerhaft, oder der Account existiert nicht.</p>
-          <span class="small"><a routerLink="/" (click)="onPasswordReset()">Passwort zurücksetzen</a></span>
+          <span class="small">
+            <a routerLink="/" (click)="onPasswordReset()">Passwort zurücksetzen</a>
+          </span>
         </div>
 
         <div class="mb-1">
@@ -38,22 +46,20 @@
   <div class="row justify-content-center mb-3">
     <div class="col-12 col-sm-10 col-md-8 col-lg-5">
       <div class="mb-2">
-        <hr>
-        Passwort vergessen?
+        <hr> Passwort vergessen?
       </div>
       <button (click)="onPasswordReset()" class="btn btn-primary" style="cursor: pointer;">
-          Passwort zurücksetzen</button>
+        Passwort zurücksetzen</button>
     </div>
   </div>
 
   <div class="row justify-content-center mb-3">
     <div class="col-12 col-sm-10 col-md-8 col-lg-5">
       <div class="mb-2">
-        <hr>
-        Hast Du noch keinen Account?
+        <hr> Hast Du noch keinen Account?
       </div>
       <button (click)="onSignup()" class="btn btn-primary" style="cursor: pointer;">
-          <i class="fa fa-user-plus"></i> Registrieren</button>
+        <i class="fa fa-user-plus"></i> Registrieren</button>
     </div>
   </div>
 

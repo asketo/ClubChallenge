@@ -1,140 +1,143 @@
-<div class="container py-3 with-background">
-  <div class="row justify-content-center">
-    <div class="col-md-10 col-lg-8">
-      <div class="row justify-content-center bg-light">
-        <div class="col-auto mb-3">
-          <div class="nav nav-pills bg-light" id="tab" role="tablist" aria-orientation="horizontal">
-            <a class="nav-link active" id="active-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-            <a class="nav-link" id="completed-tab" data-toggle="pill" href="#rules" role="tab" aria-controls="rules" aria-selected="true">Regeln</a>
-          </div>
-        </div>
-      </div>
-      <div class="tab-content">
-        <div class="tab-pane text-center active fade in show" id="home">
-          <div class="home-heading">Badminton Rangliste</div>
-          <div class="home-content">
-            <p>Diese Forderungs-App ist eine vereinsinterne Rangliste des Badminton Vereins Rot-Weiss Walldorf e.V.</p>
-            <p>
-              Diese Rangliste hat
-              <span class="font-weight-bold">keinen Einfluss</span> auf die Zusammenstellung der Mannschaften zur kommenden Saison! Sie wird allerding für das Setzen der Spieler bei der alljährlichen Vereinsmeisterschaft (27.05.2018) angewendet.
-            </p>
-            <p>Wer Lust hat sich regelmässig mit seinen Vereinskameraden im Eins-gegen-Eins zu messen, für den ist diese App genau das richtige.</p>
-            <p>Einfach registrieren, freigeschaltet werden, und direkt losfordern!</p>
-          </div>
-        </div>
-        <div class="tab-pane fade rules-start" id="rules">
-          <h4 class="text-center">Regeln</h4>
-          <br>
-          <p>
-            Das Ranglistensystem entspricht einem Tannenbaum und teilt die Ranglistenspieler/-innen in verschiedene Reihen ein. In Reihe
-            1 steht die Nummer 1, in Reihe 2 die Nummer 2 und Nummer 3, in Reihe 3 die Nummer 4, 5 und 6, in Reihe 4 die
-            Nummer 7, 8, 9 und 10, usw.... (siehe Bild unten).
-          </p>
-          <figure>
-            <div class="text-center">
-              <img src="../../assets/images/pyr.png" alt="Tannenbaum" class="img-fluid">
+<div class="with-background">
+  <div class="container py-3 text-center">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <div class="row justify-content-center mb-3 d-inline-block">
+          <div class="col-auto">
+            <div class="nav nav-pills" id="tab" role="tablist" aria-orientation="horizontal">
+              <a class="nav-link active" id="active-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+              <a class="nav-link" id="completed-tab" data-toggle="pill" href="#rules" role="tab" aria-controls="rules" aria-selected="true">Regeln</a>
             </div>
-            <figcaption class="figure-caption text-center">Spieler 5 darf in seiner eigenen Reihe Spieler 4 fordern, und in der Reihe über ihm darf er Spieler 3 fordern.</figcaption>
-          </figure>
-          <br>
-          <br>
-          <p>
-            In der Reihe, in die man sich hineingespielt hat, darf man jeden Spieler fordern. Man hat aber auch das Recht, in der nächsthöheren
-            Reihe diejenigen zu fordern, die rechts vor einem stehen.
-            <strong>Zusätzlich hat der an Nummer 3 gesetzte Spieler das Recht, den an Nummer 1 gesetzten Spieler herauszufordern.</strong>
-          </p>
-          <p class="text-secondary">
-            Befinden sich darunter neutralisierte Spieler, so kann man die unmittelbar davor stehenden Spieler fordern, soweit die Anzahl
-            der Forderungsmöglichkeiten dadurch nicht erhöht wird, z. B. bei der Nummer 8 drei Möglichkeiten. Hat der Forderer
-            den Herausgeforderten geschlagen, so nimmt er dessen Stelle ein und der Herausgeforderte rutscht eine Stelle
-            zurück, wie auch die hinter ihm platzierten einen Rang zurückgestuft werden.
+          </div>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane text-center active fade in show" id="home">
+            <div class="home-heading">Badminton Rangliste</div>
+            <div class="home-content">
+              <p>Diese Forderungs-App ist eine vereinsinterne Rangliste der <a href="http://badminton.screen9.de/" target="blank">Badminton-Abteilung</a> von <a href="http://www.rw-walldorf.de/" target="blank">Rot-Weiss Walldorf e.V.</a></p>
+              <p>
+                Diese Rangliste hat
+                <span class="font-weight-bold">keinen Einfluss</span> auf die Zusammenstellung der Mannschaften zur kommenden Saison! Sie wird allerding für das Setzen der Spieler bei der alljährlichen Vereinsmeisterschaft (27.05.2018) angewendet.
+              </p>
+              <p>Diese Rangliste ist für alle, die Lust haben sich regelmässig mit ihren Vereinskameraden zu messen.</p>
+              <p>Einfach registrieren, freigeschaltet werden, und direkt losfordern!</p>
+            </div>
+          </div>
+          <div class="tab-pane fade rules-start" id="rules">
+            <h4 class="text-center">Regeln</h4>
             <br>
-            <span class="text-secondary font-italic">(Das Neutralisieren von Spielern ist derzeit nicht implementiert.)</span>
-          </p>
-          <p>
-            Beispiel: Nummer 13 kann Nummer 12, 11, 10 und 9 herausfordern. Fordert er Nummer 9 heraus und gewinnt, dann wird er zur
-            neuen Nummer 9. Die Spieler 9, 10, 11 und 12 rutschen jeweils um eine Position nach unten. Verliert der Herausforderer,
-            dann ändert sich nichts.
-          </p>
-          <p>
-            Noch nicht in die Rangliste eingereihte Spieler können sich an einer
-            <strong>beliebigen Stelle in die Rangliste einfordern.</strong>
+            <p>
+              Das Ranglistensystem entspricht einem Tannenbaum und teilt die Ranglistenspieler/-innen in verschiedene Reihen ein. In Reihe
+              1 steht die Nummer 1, in Reihe 2 die Nummer 2 und Nummer 3, in Reihe 3 die Nummer 4, 5 und 6, in Reihe 4 die
+              Nummer 7, 8, 9 und 10, usw.... (siehe Bild unten).
+            </p>
+            <figure>
+              <div class="text-center">
+                <img src="../../assets/images/pyr.png" alt="Tannenbaum" class="img-fluid">
+              </div>
+              <figcaption class="figure-caption text-center">Spieler 5 darf in seiner eigenen Reihe Spieler 4 fordern, und in der Reihe über ihm darf er Spieler 3 fordern.</figcaption>
+            </figure>
             <br>
-            <span class="text-secondary">
-              Geht dieses Forderungsspiel verloren, hat der Spieler das Recht sich ab drei Plätze hinter dem erstmals geforderten wieder
-              einzufordern.
-            </span>
             <br>
-            <span class="text-secondary font-italic">(Noch nicht implementiert. Derzeit hat ein nicht eingereihter Spieler die Möglichkeit einen beliebigen Spieler
-              zu fordern. Geht dieses Spiel verloren wird er am Ende der Rangliste eingestuft.)</span>
-            <br> Geht auch dieses Spiel verloren, wird er am Ende der Rangliste eingestuft.
-          </p>
-
-          <h6>Das Forderungsverfahren:</h6>
-          <ul>
-            <li>
-              Die Forderung ist innerhalb von 14 Tagen abzuwickeln.
-            </li>
-            <li>
-              Wird das Spiel nicht sofort ausgetragen, dann einigt sich der Forderer mit dem Gegner auf einen Termin.
-            </li>
-            <li>
-              Ist eine Einigung auf einen Termin innerhalb der nächsten 14 Tage nicht möglich, darf sich der Herausforderer als Sieger
-              eintragen.
+            <p>
+              In der Reihe, in die man sich hineingespielt hat, darf man jeden Spieler fordern. Man hat aber auch das Recht, in der nächsthöheren
+              Reihe diejenigen zu fordern, die rechts vor einem stehen.
+              <strong>Zusätzlich hat der an Nummer 3 gesetzte Spieler das Recht, den an Nummer 1 gesetzten Spieler herauszufordern.</strong>
+            </p>
+            <p class="text-secondary">
+              Befinden sich darunter neutralisierte Spieler, so kann man die unmittelbar davor stehenden Spieler fordern, soweit die Anzahl
+              der Forderungsmöglichkeiten dadurch nicht erhöht wird, z. B. bei der Nummer 8 drei Möglichkeiten. Hat der Forderer
+              den Herausgeforderten geschlagen, so nimmt er dessen Stelle ein und der Herausgeforderte rutscht eine Stelle
+              zurück, wie auch die hinter ihm platzierten einen Rang zurückgestuft werden.
               <br>
-              <span class="font-italic">Ausnahme: Es ist bekannt dass sich der Gegner gerade im Urlaub befindet, oder er an einer langwierigen Verletzung
-                laboriert.
+              <span class="text-secondary font-italic">(Das Neutralisieren von Spielern ist derzeit nicht implementiert.)</span>
+            </p>
+            <p>
+              Beispiel: Nummer 13 kann Nummer 12, 11, 10 und 9 herausfordern. Fordert er Nummer 9 heraus und gewinnt, dann wird er zur
+              neuen Nummer 9. Die Spieler 9, 10, 11 und 12 rutschen jeweils um eine Position nach unten. Verliert der Herausforderer,
+              dann ändert sich nichts.
+            </p>
+            <p>
+              Noch nicht in die Rangliste eingereihte Spieler können sich an einer
+              <strong>beliebigen Stelle in die Rangliste einfordern.</strong>
+              <br>
+              <span class="text-secondary">
+                Geht dieses Forderungsspiel verloren, hat der Spieler das Recht sich ab drei Plätze hinter dem erstmals geforderten wieder
+                einzufordern.
               </span>
               <br>
-              <span class="text-secondary">(Die Neutralisierungsfunktion wird nachträglich implementert.)</span>
-            </li>
-          </ul>
-          <p>Fordert zum Beispiel ein Spieler einen anderen heraus, dann kann der Herausgeforderte eine sofortige Austragung
-            des Spieles ablehnen, muß sich dann aber mit dem Herausforderer auf einen Spieltermin einigen, welcher in den
-            nächsten 14 Tagen liegt.
-          </p>
-          <p>
-            Verliert ein Forderer sein Spiel, darf er
-            <span class="font-weight-bold">frühestens in 3 Wochen</span> wieder den gleichen Gegner fordern. </p>
-          <p>
-            Damit soll verhindert werden, dass ein Spieler immer wieder den gleichen Gegner herausfordert.
-          </p>
-          <p>
-            Fordert ein Spieler einen anderen Spieler heraus oder ist ein Spieler selbst gefordert worden, dann darf er erst wieder gefordert
-            werden oder selbst fordern, wenn das vorherige Spiel beendet ist und die Rangliste neu berechnet wurde.
-            <br>
-            <span class="text-secondary font-italic">(Diese Bedingung wird durch die "App" automatisch berücksichtigt.)</span>
-            <br> Gewinnt ein Forderer sein Forderungsspiel, ändern sich die Positionen der Rangliste. Damit ist erst nach der
-            Beendigung des Spieles feststellbar, wer die beiden Spieler fordern darf.</p>
-          <p>
-            Gespielt wird nach den Regeln des HBV (Rallyepoint-Zählweise). Es entscheidet der Gewinn von zwei Sätzen. Ein Satz geht bis
-            21 Punkte (2 Punkte Vorsprung, maximal 30 Punkte), jeder Ballwechsel bringt einen Punkt.
-          </p>
-          <h6>Neutralisierung</h6>
-          <span class="text-secondary font-italic">(Noch nicht implementiert.)</span>
-          <p>
-            Zweck der Neutralisierung ist es einerseits, dem Ranglistenspieler die Möglichkeit zu geben, z.B. während einer Reise oder
-            Krankheit in der Rangliste zu bleiben, ohne durch Forderungsspiele, zu denen er nicht antreten kann, seine Position
-            einzubüßen, andererseits ohne andere Spieler beim Vorwärtskommen in der Rangliste zu behindern.
-            <br> Er kann während dieser Zeit nicht fordern oder gefordert werden.
-          </p>
-          Neutralisiert wird:
-          <ul>
-            <li>
-              Wer mehr als 7 Tage nicht anwesend ist und dies gemeldet hat, für die Dauer der Abwesenheit.
-              <br> Ist er bereits gefordert, so ist der Ranglistenverwalter zu informieren.
-            </li>
-            <li>
-              Wer voraussichtlich mehr als 14 Tage spielunfähig erkrankt ist, für die Dauer der Erkrankung. Bei mehr als 14-tägiger Krankheit
-              wird eine bereits bestehende Forderung ungültig. In diesem Fall ist der Ranglistenverwalter zu informieren.
-              <br> Neutralisierte Spieler, welche am Training teilnehmen, können während dieses Trainings wieder entsprechend
-              der Regeln gefordert werden. Danach sind sie automatisch wieder neutralisiert, falls der Grund der Neutralisation
-              weiterhin besteht.
-            </li>
-          </ul>
-        </div>
+              <span class="text-secondary font-italic">(Noch nicht implementiert. Derzeit hat ein nicht eingereihter Spieler die Möglichkeit einen beliebigen Spieler
+                zu fordern. Geht dieses Spiel verloren wird er am Ende der Rangliste eingestuft.)</span>
+              <br> Geht auch dieses Spiel verloren, wird er am Ende der Rangliste eingestuft.
+            </p>
 
+            <h6>Das Forderungsverfahren:</h6>
+            <ul>
+              <li>
+                Die Forderung ist innerhalb von 14 Tagen abzuwickeln.
+              </li>
+              <li>
+                Wird das Spiel nicht sofort ausgetragen, dann einigt sich der Forderer mit dem Gegner auf einen Termin.
+              </li>
+              <li>
+                Ist eine Einigung auf einen Termin innerhalb der nächsten 14 Tage nicht möglich, darf sich der Herausforderer als Sieger
+                eintragen.
+                <br>
+                <span class="font-italic">Ausnahme: Es ist bekannt dass sich der Gegner gerade im Urlaub befindet, oder er an einer langwierigen Verletzung
+                  laboriert.
+                </span>
+                <br>
+                <span class="text-secondary">(Die Neutralisierungsfunktion wird nachträglich implementert.)</span>
+              </li>
+            </ul>
+            <p>Fordert zum Beispiel ein Spieler einen anderen heraus, dann kann der Herausgeforderte eine sofortige Austragung
+              des Spieles ablehnen, muß sich dann aber mit dem Herausforderer auf einen Spieltermin einigen, welcher in den
+              nächsten 14 Tagen liegt.
+            </p>
+            <p>
+              Verliert ein Forderer sein Spiel, darf er
+              <span class="font-weight-bold">frühestens in 3 Wochen</span> wieder den gleichen Gegner fordern. </p>
+            <p>
+              Damit soll verhindert werden, dass ein Spieler immer wieder den gleichen Gegner herausfordert.
+            </p>
+            <p>
+              Fordert ein Spieler einen anderen Spieler heraus oder ist ein Spieler selbst gefordert worden, dann darf er erst wieder gefordert
+              werden oder selbst fordern, wenn das vorherige Spiel beendet ist und die Rangliste neu berechnet wurde.
+              <br>
+              <span class="text-secondary font-italic">(Diese Bedingung wird durch die "App" automatisch berücksichtigt.)</span>
+              <br> Gewinnt ein Forderer sein Forderungsspiel, ändern sich die Positionen der Rangliste. Damit ist erst nach der
+              Beendigung des Spieles feststellbar, wer die beiden Spieler fordern darf.</p>
+            <p>
+              Gespielt wird nach den Regeln des HBV (Rallyepoint-Zählweise). Es entscheidet der Gewinn von zwei Sätzen. Ein Satz geht bis
+              21 Punkte (2 Punkte Vorsprung, maximal 30 Punkte), jeder Ballwechsel bringt einen Punkt.
+            </p>
+            <h6>Neutralisierung</h6>
+            <span class="text-secondary font-italic">(Noch nicht implementiert.)</span>
+            <p>
+              Zweck der Neutralisierung ist es einerseits, dem Ranglistenspieler die Möglichkeit zu geben, z.B. während einer Reise oder
+              Krankheit in der Rangliste zu bleiben, ohne durch Forderungsspiele, zu denen er nicht antreten kann, seine Position
+              einzubüßen, andererseits ohne andere Spieler beim Vorwärtskommen in der Rangliste zu behindern.
+              <br> Er kann während dieser Zeit nicht fordern oder gefordert werden.
+            </p>
+            Neutralisiert wird:
+            <ul>
+              <li>
+                Wer mehr als 7 Tage nicht anwesend ist und dies gemeldet hat, für die Dauer der Abwesenheit.
+                <br> Ist er bereits gefordert, so ist der Ranglistenverwalter zu informieren.
+              </li>
+              <li>
+                Wer voraussichtlich mehr als 14 Tage spielunfähig erkrankt ist, für die Dauer der Erkrankung. Bei mehr als 14-tägiger Krankheit
+                wird eine bereits bestehende Forderung ungültig. In diesem Fall ist der Ranglistenverwalter zu informieren.
+                <br> Neutralisierte Spieler, welche am Training teilnehmen, können während dieses Trainings wieder entsprechend
+                der Regeln gefordert werden. Danach sind sie automatisch wieder neutralisiert, falls der Grund der Neutralisation
+                weiterhin besteht.
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
+
 </div>
